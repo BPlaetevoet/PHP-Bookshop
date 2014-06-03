@@ -1,0 +1,52 @@
+/* 
+    Document   : bookshop
+    Created on : May 14, 2014, 12:28:54 PM
+    Author     : User_2
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+.container{
+    width:80%;
+    margin: 0 auto;
+}
+ul {
+    padding:0;
+}
+.product-lijst li {
+    list-style-type: none;
+}
+footer {
+    background-color:#3071a9;
+    margin-top:1em;
+    color:white;
+}
+.footer-comment{
+    padding: 15%;
+}
+.prijstabel {
+    text-align: right;
+}
+td {
+    padding: 5px;
+}
+tr {
+    border-top: 1px solid #a6e1ec;
+}
+.cart {
+    text-align:right;
+}
+.cart table {
+    margin-right: 5px;
+    float: right;
+}
+.sidemenu ul {
+    padding:0;
+    margin:0;
+}
+
+
+

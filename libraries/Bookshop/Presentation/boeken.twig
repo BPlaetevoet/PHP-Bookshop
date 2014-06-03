@@ -1,0 +1,37 @@
+{% extends "main.twig" %}
+{% block variabelen %}
+{% set active_page = "boeken" %}
+{% endblock %}
+
+{# Boeken template #}
+{% block content %}
+<div class="container">
+    <aside class="sidemenu col-sm-3 col-md-3">
+        <h2>Genres</h2>
+        <ul class="navigatie">
+        {% for genre in genrelijst %}
+                <li class="list-group-item"><a href="index.php?id=boeken&cat={{ genre[0].id }}">{{ genre[0].omschrijving }}<span class="badge pull-right">{{ genre["aantal"] }}</span></a></li>
+         {% endfor %}
+        </ul>
+    </aside>
+        <section class="col-sm-9 col-md-9 product-lijst">
+<h1 class="bg-info">Boekenlijst</h1>
+            <div class="col-md-5 col-sm-5"><strong>Titel</strong></div>
+            <div class="col-md-3 col-sm-3"><strong>Genre</strong></div>
+            <div class="prijstabel col-md-3 col-sm-3"><strong>Prijs</strong></div>
+            <ul>     
+           {% for boek in boekenlijst %}
+                    <li>   
+            <div class="col-md-5 col-sm-5">{{boek.titel}}</div>
+            <div class="col-md-3 col-sm-3">{{boek.genre.omschrijving}}</div>
+            <div class="prijstabel col-md-3 col-sm-3">{{boek.getPrijs}}&euro;</div>
+            <div class="col-md-1 col-sm-1"><a href="updateCart.php?actie=toevoegen&id={{ boek.id }}">
+                    <span class="glyphicon glyphicon-shopping-cart"></span></a>
+                </div>
+                    </li>
+            {% endfor %}
+                </ul>
+        </section>
+  </div>      
+{% endblock %}
+

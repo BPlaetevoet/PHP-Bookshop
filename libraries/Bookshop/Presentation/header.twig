@@ -1,0 +1,62 @@
+{# Header template voor bookshop #}
+{% block siteheader %}
+<div class="container">
+
+<div class="pull-right">
+{% if user %}
+        Welkom {{ user.getVoornaam }} - <a href="login.php?action=uitloggen">Uitloggen</a>
+        {% else %}
+            <form role="login" method="post" action="login.php">
+            <input type="text" style="margin:10px;" name="email" placeholder="e-mail"/>
+            <input type="password" style="margin:10px;" name="password" placeholder="wachtwoord"/>
+            <input type="submit" class="btn btn-primary" style="margin:10px;" name="submit" value="Inloggen">
+            </form>
+        <p class="pull-right">
+            <a href="index.php?id=registreer">of nieuwe gebruiker ?</a>
+        </p>
+    {% endif %}
+</div>
+    <div class="col-md-6 logo"><a href="index.php"><img class="img-responsive" src="images/logo.jpg" ></a></div>
+    <div class="col-md-5 col-md-offset-1 cart">
+        {% if cartItems %}
+        <h3>Uw winkelwagentje</h3>
+        <table>
+        {% for boek in cartItems %}
+            <tr>
+                <td>{{ boek[1] }} x</td>
+                <td>{{ boek[0].titel }} </td>
+                <td> {{ boek[0].prijs }} &euro;</td>
+                <td><a href="updateCart.php?actie=delete&id={{ boek[0].id }}"><button type="button" class=btn btn-small btn-danger"><span class="glyphicon glyphicon-remove"></span></button></a>
+                
+            </tr>
+        {% endfor %}
+                <tr style="border-top:1px solid;">
+                <td colspan="2"> Totaal :</td>
+                <td>{{ totaal }} &euro;</td>
+                </tr>
+        
+        <tr style="border-top:1px solid;">
+            <td><a href="viewCart.php">betalen</a></td>
+            <td><a href="updateCart.php?reset=1">Wissen</a></td>
+            </tr>
+            </table>
+        {% else %}
+        &nbsp;
+        {% endif %}
+    </div>
+{% block navigation %}
+<div class="col-md-12 navigatie">
+<nav class="nav" id="hoofdmenu">
+    <ul class="nav nav-tabs">
+        {% for item in navigation_bar %}
+        <li{% if item[0] == CurrentUrl %} class="active"{% endif %}>
+            <a href="index.php?id={{item[0] }}">{{item[1]}}</a></li>
+        {% endfor %}
+    </ul>
+        
+        
+</nav>
+    </div>
+{% endblock %}
+</div>
+{% endblock siteheader %}

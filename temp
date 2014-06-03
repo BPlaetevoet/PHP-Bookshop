@@ -1,0 +1,30 @@
+private static $idMap = array();
+
+private function __construct($id, $omschrijving) {
+        $this->id = $id;
+        $this->omschrijving = $omschrijving;
+    }
+    
+    public static function create($id, $omschrijving){
+        if (!isset(self::$idMap[$id])){
+            self::$idMap[$id] = new Genre($id, $omschrijving);
+        }
+        return self::$idMap[$id];
+    }
+  
+
+Boek.php :
+private static $idMap = array();
+
+private function __construct($id, $titel, $prijs, $genre){
+        $this->id = $id;
+        $this->titel = $titel;
+        $this->prijs = $prijs;
+        $this->genre = $genre;
+    }
+    public static function create($id, $titel, $prijs, $genre){
+        if (!isset(self::$idMap[$id])){
+            self::$idMap[$id] = new Boek($id, $titel, $prijs, $genre);
+        }
+        return self::$idMap[$id];
+    }  

@@ -1,0 +1,24 @@
+{
+    "name": "vendor/bookshop",
+    "description": "Description of project bookshop.",
+    "authors": [
+        {
+            "name": "bart plaetevoet",
+            "email": "bart.plaetevoet@telenet.be"
+        }
+    ],
+    "require": {
+        "twig/twig": "dev-master",
+        "doctrine/doctrine-bundle": "dev-master",
+        "doctrine/orm": "2.4.x-dev"
+    }
+    , "autoload":{
+            "psr-0":{
+                "Bookshop\\Entities": "libraries/",
+                "Bookshop\\Data": "libraries/",
+                "Bookshop\\Business": "libraries/"
+            }
+        }
+        
+    
+}
