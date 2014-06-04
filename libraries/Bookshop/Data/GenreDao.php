@@ -17,7 +17,7 @@ class GenreDAO{
         return $genre;
     }
     public function getAantalEnGenre($mgr){
-        $query = $mgr->createQuery("select g, count(b)as aantal from Bookshop\Entities\Genre g LEFT JOIN Bookshop\Entities\Boek b where b.genre = g.id group by g.id");
+        $query = $mgr->createQuery("select g, count(b)as aantal from Bookshop\Entities\Genre g LEFT JOIN Bookshop\Entities\Boek b where b.genre = g.id GROUP BY g.id");
         $lijst = $query->getResult();
         return $lijst;
     } 

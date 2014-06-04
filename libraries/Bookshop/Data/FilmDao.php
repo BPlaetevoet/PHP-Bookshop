@@ -21,5 +21,11 @@ class FilmDAO{
         $film = $mgr->getRepository('Bookshop\\Entities\\Film')->find($titel);
         return $film;
     }
+    public function addFilm($mgr, $titel, $prijs, $speelduur, $genre){
+        $filmgenre = $mgr->getRepository('Bookshop\\Entities\FilmGenre')->find($genre);
+        $film = new Film($titel, $prijs, $speelduur, $filmgenre);
+        $mgr->persist($film);
+        $mgr->flush();
+    }
 }
 

@@ -9,8 +9,8 @@
     <aside class="sidemenu col-sm-3 col-md-3">
         <h2>Genres</h2>
         <ul class="navigatie">
-        {% for genre in genrelijst %}
-                <li class="list-group-item"><a href="index.php?id=boeken&cat={{ genre[0].id }}">{{ genre[0].omschrijving }}<span class="badge pull-right">{{ genre["aantal"] }}</span></a></li>
+        {% for boek in boekenlijst %}
+                <li class="list-group-item"><a href="index.php?id=boeken&cat={{ boek.genre.omschrijving }}">{{ genre[0].omschrijving }}<span class="badge pull-right">{{ genre["aantal"] }}</span></a></li>
          {% endfor %}
         </ul>
     </aside>
@@ -22,7 +22,7 @@
             <ul>     
            {% for boek in boekenlijst %}
                     <li>   
-            <div class="col-md-5 col-sm-5">{{boek.titel}}</div>
+            <div class="col-md-5 col-sm-5">{{boek.titel}} ({{ boek.auteur }})</div>
             <div class="col-md-3 col-sm-3">{{boek.genre.omschrijving}}</div>
             <div class="prijstabel col-md-3 col-sm-3">{{boek.getPrijs}}&euro;</div>
             <div class="col-md-1 col-sm-1"><a href="updateCart.php?actie=toevoegen&id={{ boek.id }}">

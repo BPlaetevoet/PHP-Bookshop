@@ -1,25 +1,46 @@
 <?php
 //User.php
 namespace Bookshop\Entities;
-/** @Entity@Table(name="users")*/
+
+/** 
+ * @Entity
+ * @Table(name="users")
+ */
 class User {
-    /** @id @Column(type="integer", unique=true, nullable=false)
-     * @GeneratedValue */
+    /** 
+     * @id 
+     * @Column(type="integer", unique=true, nullable=false)
+     * @GeneratedValue(strategy="AUTO") 
+     */
     private $id;
-    /** @Column(type="string", length=32, name="naam")*/
+    /** 
+     * @Column(type="string", length=32, name="naam")
+     */
     private $naam;
-    /** @Column(type="string", length=32, name="voornaam")*/
+    /** 
+     * @Column(type="string", length=32, name="voornaam")
+     */
     private $voornaam;
-    /** @Column(type="string", length=32, name="email")*/
+    /** 
+     * @Column(type="string", length=32, name="email")
+     */
     private $mail;
-    /** @Column(type="string", length=52, name="adres")*/
+    /** 
+     * @Column(type="string", length=52, name="adres")
+     */
     private $adres;
-    /** @Column(type="string", length=32, name="password")*/
+    /** 
+     * @Column(type="string", length=32, name="password")
+     */
     private $password;
-    /** @Column(type="boolean", length=1, name="isadmin")*/
+    /** 
+     * @Column(type="boolean", length=1, name="isadmin")
+     */
     private $isadmin;
-     /** @ManyToOne(targetEntity="Plaats")
-     * @JoinColumn(name="plaats_id", referencedColumnName="id")*/           
+     /** 
+      * @ManyToOne(targetEntity="Plaats")
+      * @ORM\JoinColumn(name="plaats_id", referencedColumnName="id")
+      */           
     private $plaats;
     
     

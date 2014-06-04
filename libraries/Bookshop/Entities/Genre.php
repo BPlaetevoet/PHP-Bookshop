@@ -1,15 +1,24 @@
 <?php
 //Genre.php
 namespace Bookshop\Entities;
-/** @Entity @Table(name="genres")*/
+
+/** 
+ * @Entity 
+ * @Table(name="genres")
+ */
 class Genre{
-     /** @id @Column(type="integer", unique=true, nullable=false)
-     * @GeneratedValue */
-    private $id;
-    /** @Column(type="string", length=30) */
-    private $omschrijving;
+     /** 
+      * @id 
+      * @Column(type="integer", unique=true, nullable=false)
+      * @GeneratedValue(strategy="AUTO")
+      */
+    protected $id;
+     /** 
+     * @Column(type="string", length=30) 
+     */
+    protected $omschrijving;
     
-    private function __construct($omschrijving) {
+    public function __construct($omschrijving) {
         $this->omschrijving = $omschrijving;
     }
     
@@ -24,4 +33,8 @@ class Genre{
     public function setOmschrijving($omschrijving){
         $this->omschrijving = $omschrijving;
     }
+}
+
+class FilmsGenre extends Genre{
+    
 }

@@ -2,17 +2,26 @@
 //Boek.php
 namespace Bookshop\Entities;
 
-/** @Entity@Table(name="boeken")*/
+
+/**
+* @Entity
+* @Table(name="boeken")
+*/
 class Boek extends Product{
-        
-    /** @Column(type="string", length=32, name="auteur")*/
+    
+    /**
+     * @Column(type="string", length=32)
+     * 
+     */
     private $auteur;
-    /** @ManyToOne(targetEntity="Genre")
-     * @JoinColumn(name="genre_id", referencedColumnName="id")*/
-    private $genre;
+    /** 
+     * @ManyToOne(targetEntity="Genre")
+     * @JoinColumn(name="genre_id", referencedColumnName="id")
+     */
+    protected $genre;
 
     
-    private function __construct($titel, $prijs, $auteur, $genre){
+    public function __construct($titel, $prijs, $auteur, $genre){
         $this->titel = $titel;
         $this->prijs = $prijs;
         $this->auteur = $auteur;
@@ -25,6 +34,7 @@ class Boek extends Product{
     public function getAuteur(){
         return $this->auteur ;
     }
+    
     public function setAuteur($auteur){
         $this->auteur = $auteur;
     }

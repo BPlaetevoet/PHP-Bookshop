@@ -10,7 +10,7 @@
         <h2>Genres</h2>
         <ul class="navigatie">
         {% for genre in genrelijst %}
-                <li class="list-group-item"><a href="index.php?id=boeken&cat={{ genre[0].id }}">{{ genre[0].omschrijving }}<span class="badge pull-right">{{ genre["aantal"] }}</span></a></li>
+                <li class="list-group-item"><a href="index.php?id=films&cat={{ genre[0].id }}">{{ genre[0].omschrijving }}<span class="badge pull-right">{{ genre["aantal"] }}</span></a></li>
          {% endfor %}
         </ul>
     </aside>

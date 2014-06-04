@@ -21,4 +21,8 @@ class FilmService{
         $film = FilmDao::getByTitel($mgr, $titel);
         return $film;
     }
+    public function VoegFilmToe($mgr, $titel, $prijs, $speelduur, $genre){
+        $film = FilmDao::AddFilm($mgr, $titel, $prijs, $speelduur, $genre);
+        return $film;
+    }
 }

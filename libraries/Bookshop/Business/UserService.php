@@ -1,9 +1,8 @@
 <?php
 namespace Bookshop\Business;
 
-require_once 'Bookshop/Data/userdao.clas.php';
 
-use Bookshop\Data\userdao;
+use Bookshop\Data\UserDao;
 
 
 class userService {

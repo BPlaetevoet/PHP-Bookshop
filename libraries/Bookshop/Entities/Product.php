@@ -1,17 +1,37 @@
 <?php
 //Product.php
 namespace Bookshop\Entities;
-/** @MappedSuperclass */
-class Product{
+
+
+/**
+* @Entity
+* @Table(name="products")
+* @InheritanceType("JOINED")
+* @DiscriminatorColumn(name="Product", type="string", length=20)
+* @DiscriminatorMap({"boek" = "Boek", "film" = "Film"})
+*/
+abstract class Product{
     // Unieke indentifier voor objecten van deze klasse
-    /** @id @Column(type="integer", unique=true, nullable=false)
-      * @GeneratedValue */
+    /** 
+     * @Id
+     * @Column(type="integer")
+     * @GeneratedValue(strategy="AUTO") 
+     */
     protected $id;
-    /** @Column(type="string", length=30, name="titel")*/
+    /** 
+     * @Column(type="string", length=30, name="titel")
+     */
     protected $titel;
-        /** @Column(type="float", name="prijs")*/
+    /** 
+     * @Column(type="float", name="prijs")
+     */
     protected $prijs;
-    
+    /** 
+     * @ManyToOne(targetEntity="Genre")
+     * @JoinColumn(name="genre_id", referencedColumnName="id")
+     */
+    protected $genre;
+       
    
     public function getId(){
         return $this->id;
@@ -28,5 +48,7 @@ class Product{
     public function setPrijs($prijs){
         $this->prijs = $prijs;
     }
+    
+    
 }
 

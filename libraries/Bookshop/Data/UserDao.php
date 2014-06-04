@@ -1,14 +1,11 @@
 <?php
 namespace Bookshop\Data;
-require_once 'library/Bookshop/Entities/User.class.php';
-require_once 'library/Bookshop/Entities/Plaats.class.php';
-require_once 'dbconfig.php';
 
 use Bookshop\Entities\User;
 use Bookshop\Entities\Plaats;
-use Bookshop\Data\DBConfig;
 
-class userdao {
+
+class UserDao {
     public function getUserList(){
         $lijst = array();
         $dbc = new \PDO(DBConfig::$DB_CONNSTRING, DBConfig::$DB_USERNAME, DBConfig::$DB_PASSWORD);

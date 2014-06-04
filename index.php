@@ -41,6 +41,7 @@ if ($page == "boeken"){
     }
     $genrelijst = GenreService::getGenresEnAantallen($mgr);
     $twigDataArray["boekenlijst"] = $boeken; 
+    $twigDataArray["genrelijst"] = $genrelijst;
 }
 if ($page == "films"){
     if(isset($_GET["cat"])){
@@ -50,11 +51,12 @@ if ($page == "films"){
     }
     $genrelijst = FilmGenreService::getGenresEnAantallen($mgr);
     $twigDataArray["filmlijst"] = $films; 
+    $twigDataArray["genrelijst"] = $genrelijst;
 }
 
 
 
-$twigDataArray["genrelijst"] = $genrelijst;
+
 
 $view = $twig->render("$page.twig", $twigDataArray);
 print ($view);

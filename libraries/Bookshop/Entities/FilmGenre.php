@@ -2,18 +2,25 @@
 //Filmgenre.php
 namespace Bookshop\Entities;
 
-/** @Entity@Table(name="filmgenres")*/
+/** 
+ * @Entity@Table(name="filmgenres")
+ */
 class FilmGenre{
-    /** @id @Column(type="integer", unique=true, nullable=false)
-     * @GeneratedValue */
-    private $id;
-    /** @Column(type="string", length=30, name="omschrijving") */
-    private $omschrijving;
+    /** 
+     * @id 
+     * @Column(type="integer", unique=true, nullable=false)
+     * @GeneratedValue 
+     */
+    protected $id;
+    /** 
+     * @Column(type="string", length=30, name="omschrijving") 
+     */
+    protected $omschrijving;
     
-     private function __construct($omschrijving) {
+     public function __construct($omschrijving) {
         $this->omschrijving = $omschrijving;
     }
-    public function getgenreId(){
+    public function getId(){
         return $this->id;
     }
     
