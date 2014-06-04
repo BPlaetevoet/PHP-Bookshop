@@ -12,40 +12,40 @@ class User {
      * @Column(type="integer", unique=true, nullable=false)
      * @GeneratedValue(strategy="AUTO") 
      */
-    private $id;
+    protected $id;
     /** 
      * @Column(type="string", length=32, name="naam")
      */
-    private $naam;
+    protected $naam;
     /** 
      * @Column(type="string", length=32, name="voornaam")
      */
-    private $voornaam;
+    protected $voornaam;
     /** 
      * @Column(type="string", length=32, name="email")
      */
-    private $mail;
+    protected $mail;
     /** 
      * @Column(type="string", length=52, name="adres")
      */
-    private $adres;
+    protected $adres;
     /** 
      * @Column(type="string", length=32, name="password")
      */
-    private $password;
+    protected $password;
     /** 
      * @Column(type="boolean", length=1, name="isadmin")
      */
-    private $isadmin;
+    protected $isadmin;
      /** 
       * @ManyToOne(targetEntity="Plaats")
       * @ORM\JoinColumn(name="plaats_id", referencedColumnName="id")
       */           
-    private $plaats;
+    protected $plaats;
     
     
     
-    public function __construct($id, $naam, $voornaam, $mail, $adres, $password, $isadmin, $plaats){
+    public function __construct($naam, $voornaam, $mail, $adres, $password, $isadmin, $plaats){
         $this->id = $id;
         $this->naam = $naam;
         $this->voornaam = $voornaam;

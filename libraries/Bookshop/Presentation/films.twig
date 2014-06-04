@@ -22,10 +22,10 @@
             <ul>     
            {% for film in filmlijst %}
                     <li>   
-            <div class="col-md-5 col-sm-5">{{film.titel}}</div>
-            <div class="col-md-3 col-sm-3">{{film.filmGenre.omschrijving}}</div>
+            <div class="col-md-5 col-sm-5">{{film.titel}} ({{ film.speelduur}} min)</div>
+            <div class="col-md-3 col-sm-3">{{film.Genre.omschrijving}}</div>
             <div class="prijstabel col-md-3 col-sm-3">{{film.getPrijs}}&euro;</div>
-            <div class="col-md-1 col-sm-1"><a href="updateCart.php?actie=toevoegen&film={{ film.id }}">
+            <div class="col-md-1 col-sm-1"><a href="updateCart.php?actie=toevoegen&id={{ film.id }}&returnurl={{ current_url }}">
                     <span class="glyphicon glyphicon-shopping-cart"></span></a>
                 </div>
                     </li>

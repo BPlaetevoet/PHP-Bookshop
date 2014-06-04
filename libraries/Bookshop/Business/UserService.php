@@ -6,41 +6,28 @@ use Bookshop\Data\UserDao;
 
 
 class userService {
-    public function getUserList(){
-        $dao = new \userdao();
-        $lijst = $dao->getUserList();
+    public function getUserList($mgr){
+        $lijst = UserDao::getUserList($mgr);
         return $lijst;
     }
-    public function getUserById($id){
-        $dao = new \userdao;
-        $user = $dao->getUserById($id);
+    public function getUserById($mgr, $id){
+        $user = UserDao::getById($mgr, $id);
         return $user;
     }
-    public function getUserByNaam($naam, $voornaam){
-        $dao = new \userdao();
-        $user = $dao->getUserByNaam($naam, $voornaam);
+    public function getUserByNaam($mgr, $naam, $voornaam){
+        $user = UserDao::getUserByNaam($mgr, $naam, $voornaam);
         return $user;
     }
-    public function getUserByMail($mail){
-        $dao = new \userdao();
-        $user = $dao->getUserByMail($mail);
+    public function getUserByMail($mgr, $mail){
+        $user = UserDao::getUserByMail($mgr, $mail);
         return $user;
     }
-    public function RegisterNewUser($naam, $voornaam, $mail, $adres, $plaats){
-        $dao = new \userdao();
-        $dao->RegisterNewUser($naam, $voornaam, $mail, $adres, $plaats);
+    public function RegisterNewUser($mgr, $naam, $voornaam, $mail, $adres, $password, $postcode, $gemeente){
+        $user = UserDao::RegisterNewUser($mgr, $naam, $voornaam, $mail, $adres, $password, $postcode, $gemeente);
     }
     public static function validateUser($mail, $paswoord){
-        $dao = new \userdao();
-        $user = $dao->getUserByMail($mail);
-        if ($user){
-            if ($user->getPassword == $paswoord){
-                return true;
-            }
-            else return false;
-        } else {
-            return false;
-        }
+        $user = UserDao::validateUser($mgr, $mail, $password);
+        return $user;
     }
 }
 

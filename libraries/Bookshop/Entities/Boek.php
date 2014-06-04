@@ -13,7 +13,7 @@ class Boek extends Product{
      * @Column(type="string", length=32)
      * 
      */
-    private $auteur;
+    protected $auteur;
     /** 
      * @ManyToOne(targetEntity="Genre")
      * @JoinColumn(name="genre_id", referencedColumnName="id")

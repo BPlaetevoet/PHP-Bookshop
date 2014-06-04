@@ -6,7 +6,7 @@ require_once 'bootstrap.php';
 use Bookshop\Business\BoekService;
 use Bookshop\Business\GenreService;
 use Bookshop\Business\FilmService;
-use Bookshop\Business\FilmGenreService;
+use Bookshop\Business\ProductService;
 $twigDataArray =array();
 
 if (isset($_GET["id"])){
@@ -14,22 +14,18 @@ if (isset($_GET["id"])){
 }else{
     $page = "home";
 }
+$current_url = $_SERVER['REQUEST_URI'];
 $twigDataArray["page"]= $page;
-
-if (isset($_SESSION["cartItems"]["boeken"])|| (isset($_SESSION["cartItems"]["films"]))){
+$twigDataArray["current_url"] = $current_url;
+if (isset($_SESSION["cartItems"])){
     $totaal = 0;
-    $cartItems["boeken"] = array();
-    $cartItems["films"] = array();
-    foreach ($_SESSION["cartItems"]["boeken"] as $item => $aantal){
-        $boek = BoekService::getById($mgr, $id);
-        array_push($cartItems["boeken"], $boek);
-        $totaal += ($boek->getPrijs()*$aantal);
+    $cartItems = array();
+    foreach ($_SESSION["cartItems"] as $item => $aantal){
+        $product = ProductService::getById($mgr, $item);
+        array_push($cartItems, array($product, $aantal));
+        $totaal += ($product->getPrijs()*$aantal);
     }
-    foreach($_SESSION["cartItems"]["films"] as $item => $aantal){
-        $film = $mgr->find("\\Bookshop\\Entities\\Film", $item);
-        array_push($cartItems["films"], $film);
-        $totaal += ($film->getPrijs()*$aantal);
-    }
+    
     $twigDataArray["cartItems"] = $cartItems;
     $twigDataArray["totaal"] = $totaal;
 }
@@ -39,7 +35,7 @@ if ($page == "boeken"){
     }else {
         $boeken = BoekService::GetBoekenOverzicht($mgr); //(*)
     }
-    $genrelijst = GenreService::getGenresEnAantallen($mgr);
+    $genrelijst = BoekService::getGenresEnAantallen($mgr);
     $twigDataArray["boekenlijst"] = $boeken; 
     $twigDataArray["genrelijst"] = $genrelijst;
 }
@@ -49,7 +45,7 @@ if ($page == "films"){
     }else {
         $films = FilmService::GetFilmOverzicht($mgr); //(*)
     }
-    $genrelijst = FilmGenreService::getGenresEnAantallen($mgr);
+    $genrelijst = FilmService::getGenresEnAantallen($mgr);
     $twigDataArray["filmlijst"] = $films; 
     $twigDataArray["genrelijst"] = $genrelijst;
 }

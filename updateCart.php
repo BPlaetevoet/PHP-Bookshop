@@ -1,8 +1,8 @@
 <?php
 
-require_once 'libraries/Bookshop/Business/BoekService.php';
 session_start();
 
+require_once 'bootstrap.php';
 
 
 use Bookshop\Business\BoekService;

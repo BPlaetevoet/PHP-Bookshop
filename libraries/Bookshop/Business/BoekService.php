@@ -21,4 +21,8 @@ class BoekService{
         $boek = BoekDao::getByTitel($mgr, $titel);
         return $boek;
     }
+    public function getGenresEnAantallen($mgr){
+        $lijst = BoekDao::getGenresEnAantallen($mgr);
+        return $lijst;
+    }
 }

@@ -25,4 +25,8 @@ class FilmService{
         $film = FilmDao::AddFilm($mgr, $titel, $prijs, $speelduur, $genre);
         return $film;
     }
+    public function getGenresEnAantallen($mgr){
+        $lijst = FilmDao::getGenresEnAantallen($mgr);
+        return $lijst;
+    }
 }

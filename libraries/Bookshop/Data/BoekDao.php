@@ -16,27 +16,23 @@ class BoekDao{
     public function getByGenre($mgr, $GenreId){
         $lijst = $mgr->getRepository('Bookshop\\Entities\\Boek')->findBy(array('genre' => $GenreId));
         return $lijst;
-
-        }
-    
+    }
+    public function getGenresEnAantallen($mgr){
+        $query = $mgr->createQuery('select g.id, g.omschrijving, count(b) as aantal from Bookshop\\Entities\\Genre g LEFT JOIN Bookshop\\Entities\\Boek b where b.genre = g.id  group by b.genre having count(b)>0');
+        $lijst = $query->getResult();
+        return $lijst;
+    }
     public function getByTitel($mgr, $titel){
         $boek = $mgr->getRepository('Bookshop\\Entities\\Boek')->findBy(array('titel' => $titel));
         return $boek;
     }
      
-    public function __create($titel, $genreId){
-        $bestaandboek = $this->getByTitel($titel);
-        if(isset($bestaandboek))throw new TitelBestaatException();
-        $sql = "insert into mvc_boeken (titel, prijs, auteur, genre_id) values ('".$titel."', ".$prijs ."', ".$genreId .")";
-        $dbc = new PDO(DBConfig::$DB_CONNSTRING, DBConfig::$DB_USERNAME, DBConfig::$DB_PASSWORD);
-        $dbc->exec($sql);
-        $boekId = $dbc->lastInsertId();
-        $dbc = null;
-        $genreDAO = new GenreDAO();
-        $genre = $genreDAO->getById($genreId);
-        $boek = Boek::create($boekId, $titel, $prijs, $genre);
-        return $boek;
-        }
+    public function AddBoek($mgr, $titel, $prijs, $auteur, $genreId){
+        $genre = $mgr->getRepository('Bookshop\\Entities\\Genre')->find($genreId);
+        $boek = new Bookshop\Entities\Boek($titel, $prijs, $auteur, $genre);
+        $mgr->persist($boek);
+        $mgr->flush();
+    }
     public function delete($id){
         $sql = "delete from mvc_boeken where id=".$id;
         $dbc = new PDO(DBConfig::$DB_CONNSTRING, DBConfig::$DB_USERNAME, DBConfig::$DB_PASSWORD);

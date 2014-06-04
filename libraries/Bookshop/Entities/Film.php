@@ -17,7 +17,7 @@ class Film extends Product {
     /** 
      * @Column(type="integer", name="speelduur") 
      */
-    private $speelduur;
+    protected $speelduur;
     /** 
      * @ManyToOne(targetEntity="Genre")
      * @JoinColumn(name="filmgenre_id", referencedColumnName="id")
@@ -28,7 +28,7 @@ class Film extends Product {
        $this->titel = $titel;
        $this->speelduur = $speelduur;
        $this->prijs = $prijs;
-       $this->genre = $filmGenre;
+       $this->genre = $genre;
    }
    public function getSpeelDuur(){
        return $this->speelduur;
