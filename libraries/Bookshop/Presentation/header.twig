@@ -1,14 +1,16 @@
 {# Header template voor bookshop #}
 {% block siteheader %}
+    <div id="js_warning"><strong>Deze site vereist Javascript, gelieve javascript aan te zetten en de pagina opnieuw te laden !!</strong></div>
 <div class="container">
 
 <div class="pull-right">
+    
 {% if user %}
-        Welkom {{ user.getVoornaam }} - <a href="login.php?action=uitloggen">Uitloggen</a>
+        Welkom {{ user.voornaam }} - <a href="login.php?actie=uitloggen">Uitloggen</a>
         {% else %}
             <form role="login" method="post" action="login.php">
-            <input type="text" style="margin:10px;" name="email" placeholder="e-mail"/>
-            <input type="password" style="margin:10px;" name="password" placeholder="wachtwoord"/>
+            <input type="text" style="margin:10px;" name="email" id="email" placeholder="e-mail"/>
+            <input type="password" style="margin:10px;" name="password" id="password" placeholder="wachtwoord"/>
             <input type="submit" class="btn btn-primary" style="margin:10px;" name="submit" value="Inloggen">
             </form>
         <p class="pull-right">
@@ -37,7 +39,7 @@
         
         <tr style="border-top:1px solid;">
             <td><a href="viewCart.php">betalen</a></td>
-            <td><a href="updateCart.php?reset=1">Wissen</a></td>
+            <td><a href="updateCart.php?reset=1&returnurl={{ current_url }}">Wissen</a></td>
             </tr>
             </table>
         {% else %}

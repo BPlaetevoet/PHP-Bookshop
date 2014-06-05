@@ -43,16 +43,12 @@ class User {
       */           
     protected $plaats;
     
-    
-    
-    public function __construct($naam, $voornaam, $mail, $adres, $password, $isadmin, $plaats){
-        $this->id = $id;
+    public function __construct($plaats, $naam, $voornaam, $mail, $adres, $password ){
         $this->naam = $naam;
         $this->voornaam = $voornaam;
         $this->mail = $mail;
         $this->adres = $adres;
         $this->password = $password;
-        $this->isadmin = $isadmin;
         $this->plaats = $plaats;
         
     }

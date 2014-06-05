@@ -12,10 +12,6 @@ class GenreDAO{
         $genre = $mgr->getRepository('Bookshop\\Entities\\Genre')->find($id);
         return $genre;
     }
-    public function getByOmschrijving($mgr, $omschrijving){
-        $genre = $mgr->getRepository('Bookshop\\Entities\\Genre')->find($omschrijving);
-        return $genre;
-    }
     public function getAantalEnGenre($mgr){
         $query = $mgr->createQuery("select g, count(b)as aantal from Bookshop\Entities\Genre g LEFT JOIN Bookshop\Entities\Boek b where b.genre = g.id GROUP BY g.id");
         $lijst = $query->getResult();

@@ -2,7 +2,7 @@
 namespace Bookshop\Data;
 
 use Bookshop\Entities\User;
-use Bookshop\Entities\Plaats;
+use Bookshop\Data\PlaatsDao;
 
 
 class UserDao {
@@ -10,29 +10,37 @@ class UserDao {
         $lijst = $mgr->getRepository('Bookshop\\Entities\\User')->findAll();
         return $lijst;
     }
-    public function getUserById($mgr, $id){
+    public function getById($mgr, $id){
         $user = $mgr->getRepository('Bookshop\\Entities\\User')->find($id);
-    }
-    public function getUserByNaam ($mgr, $naam, $voornaam){
-        $user = $mgr->getRepository('Bookshop\\Entities\\User')->findBy(array("naam"=>$naam, "voornaam"=>$voornaam));
         return $user;
     }
-    public function getUserByMail($mgr, $mail){
-        $user = $mgr->getRepository('Bookshop\\Entities\\User')->findBy(array("mail"=>$mail));
+    public function getUserByNaam ($mgr, $naam, $voornaam){
+        $user = $mgr->getRepository('Bookshop\\Entities\\User')->findBy(array('naam'=>$naam, 'voornaam'=>$voornaam));
+        return $user;
+    }
+    public function getByMail($mgr, $mail){
+        $user = $mgr->getRepository('Bookshop\\Entities\\User')->findBy(array('mail'=>$mail));
         return $user;
     }    
     public function RegisterNewUser($mgr, $naam, $voornaam, $mail, $adres, $postcode, $gemeente, $password){
-        $plaats = PlaatsDao::voegPlaatsToe($mgr, $postcode, $gemeente);
-        $user = new User($naam, $voornaam, $mail, $adres, $password, 0, $plaats);
-        $mgr->persist($user);
-        $mgr->flush();
+        $userbestaat = $mgr->getRepository('Bookshop\\Entities\\User')->findOneByMail($mail);
+        if (!$userbestaat){
+            $plaats = PlaatsDao::voegPlaatsToe($mgr, $postcode, $gemeente);
+            $user = new User($plaats, $naam, $voornaam, $mail, $adres, $password);
+            $mgr->persist($user);
+            $mgr->flush();
+            return $user;
+        }else {
+            return $userbestaat;
+        }
+        
     }
     public function validateUser($mgr, $mail, $password){
-        $user = $mgr->getRepository('Bookshop\\Entities\\User')->findBy(array("mail"=>$mail, "password"=>$password));
-        if (!$user){
+        $user = $mgr->getRepository('Bookshop\\Entities\\User')->findBy(array('mail'=>$mail, 'password'=>$password));
+        if($user){
+            return $user;
+        }else {
             return null;
-            exit;
         }
-        return $user;
     }
 }

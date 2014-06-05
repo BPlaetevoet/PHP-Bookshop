@@ -8,20 +8,16 @@ class PlaatsDao{
         $lijst = $mgr->getRepository('Bookshop\\Entities\\Plaats')->findAll();
         return $lijst;
     }
-    public function getPlaatsById($mgr, $id){
-        $plaats = $mgr->getRepository('Bookshop\\Entities\\Plaats')->find($id);
-        return $plaats;        
+    public function getById($mgr, $id){
+        $plaats = $mgr->getRepository('Bookshop\\Entities\\Plaats')->findOneById($id);
+        return $plaats;
     }
     public function getByPostcode($mgr, $postcode){
-        $plaats = $mgr->getRepository('Bookshop\\Entities\\Plaats')->findBy(array("postcode"=>$postcode));
+        $plaats = $mgr->getRepository('Bookshop\\Entities\\Plaats')->findOneByPostcode($postcode);
         return $plaats;
     }
     public function getByGemeente($mgr, $gemeente){
-        $plaats = $mgr->getRepository('Bookshop\\Entities\\Plaats')->findBy(array("gemeente"=>$gemeente));
-        if (!$plaats){
-            return null;
-            exit;
-        }
+        $plaats = $mgr->getRepository('Bookshop\\Entities\\Plaats')->findOneByGemeente($gemeente);
         return $plaats;
     }
     public function voegPlaatsToe($mgr, $postcode, $gemeente){
@@ -30,7 +26,6 @@ class PlaatsDao{
             $plaats = new Plaats($postcode, $gemeente);
             $mgr->persist($plaats);
             $mgr->flush();
-            $plaats = PlaatsDao::getByGemeente($mgr, $gemeente);
             return $plaats;
         }else{
             return $GemeenteBestaat;

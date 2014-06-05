@@ -7,6 +7,7 @@ use Bookshop\Business\BoekService;
 use Bookshop\Business\GenreService;
 use Bookshop\Business\FilmService;
 use Bookshop\Business\ProductService;
+use Bookshop\Business\UserService;
 $twigDataArray =array();
 
 if (isset($_GET["id"])){
@@ -49,10 +50,15 @@ if ($page == "films"){
     $twigDataArray["filmlijst"] = $films; 
     $twigDataArray["genrelijst"] = $genrelijst;
 }
-
-
-
-
+if(isset($_SESSION["login"])){
+    $id = $_SESSION["login"];
+    $user = UserService::getUserById($mgr, $id);
+    $twigDataArray["user"] = $user;
+}
+if (isset($_SESSION["admin"])){
+    $twigDataArray["admin"] = 1;
+}
 
 $view = $twig->render("$page.twig", $twigDataArray);
 print ($view);
+
