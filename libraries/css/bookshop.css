@@ -12,12 +12,18 @@ root {
 .container{
     width:80%;
     margin: 0 auto;
+    clear:both;
 }
 ul {
     padding:0;
 }
 .product-lijst li {
     list-style-type: none;
+    clear: left;
+}
+.cart a:hover{
+    text-decoration: none;
+    color:#fff;
 }
 footer {
     background-color:#3071a9;
@@ -38,6 +44,14 @@ tr {
 }
 .cart {
     text-align:right;
+    background-color:rgba(0,0,0,0.5);
+    margin-top:-1px;
+    border-top: none;
+    border-bottom:1px solid black;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    border-radius: 0 0 5px 5px;
+    color: #fff;
 }
 .cart table {
     margin-right: 5px;
@@ -53,6 +67,66 @@ tr {
     height : 2.5em;
     text-align: center;
 }
+.top-page {
+    position :fixed;
+    width : 100%;
+    /*height : 4.5em;*/
+    background-color: #3071a9;
+    z-index:1000;
+}
+.top-page a {
+    color:#fff;
+}
+.top-page a:hover{
+    color:#3071a9;
+}
+.header-items {
+    background-image: url('../../images/Bookshelf.jpg');
+    padding-top: 3em;
+}
+.well {
+    background-color: rgba(0,0,0,0.5);
+    border-top: none;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    border-radius: 5px;
+    color: #fff;
+}
+.well input{
+    color:black;
+}
+.headerform{
+    margin-top:-1px;
+    border-radius: 0 0 5px 5px;
+}
+.nav-tabs {
+    border-bottom: none;
+}
+/*Social networking icons*/ 
+ul#social-networking{
+
+	
+}
+#social-networking li {
+
+    background-image: url('../../images/social_icons_sprite.png');
+}
+#social-networking li, #social-networking a {
+    width: 64px;
+    height: 64px;
+    display: block;
+    float: left;
+}
+ul#social-networking li.twitter {background-position: -192px 0;}
+ul#social-networking li.twitter:hover {background-position: -192px -32px;}
+
+ul#social-networking li.facebook {background-position: 0px 0px;}
+ul#social-networking li.facebook:hover{background-position: 0 -32px;}
+
+ul#social-networking li.linkedin {background-position: -288px 0px;}
+ul#social-networking li.linkedin {background-position: -288px -32px;}
+
 
 
 

@@ -1,6 +1,46 @@
 {% extends 'main.twig' %}
 {% block content %}
-    {% for item in cartItems %}
-        
-    {% endfor %}
+    <aside class="user-info col-md-4 col-sm-4"> 
+        <h2>Verzendgegevens :</h2>
+        {% if user %}
+           
+            {{user.voornaam}} {{user.naam}}<br />
+            {{user.adres}}<br />
+            {{user.plaats.postcode}} {{user.plaats.gemeente }}<br />
+            {% else %}
+                <div id="loginform"">
+                    <button id="btnShowHide" class="btn btn-primary" role="button">Login</button>
+                    
+                <button id="btnShowHide2" class="btn btn-primary" role="button">Registreer</button>
+                <div id="showMe" class="well" style="display:none;">
+                        
+                        <form role="login" method="post" action="login.php">
+                        <input type="text" style="margin:10px;" name="email" id="email" placeholder="e-mail"/>
+                        <input type="password" style="margin:10px;" name="password" id="password" placeholder="wachtwoord"/>
+                        <input type="submit" class="btn btn-primary" style="margin:10px;" name="submit" value="Inloggen">
+                        </form>
+                    </div>
+                <div id="showMe2" class="well" style="display:none;">
+                    {% include 'contactform.template.twig' %}
+                </div>
+            {%endif%}
+            
+    </aside>
+    <section class="product-lijst col-md-8 col-sm-8">
+    <h1 class="bg-info">Uw winkelwagentje</h1>
+    <div class="col-md-2 col-sm-2"><strong>Aantal</strong></div>
+    <div class="col-md-6 col-sm-6"><strong>Titel</strong></div>
+    <div class="col-md-3 col-sm-3"><strong>Prijs</strong></div>
+    <ul>
+    {% for product in cartItems %}
+        <li>
+            <div class="col-md-2 col-sm-2">{{ product[1] }}x</div>
+            <div class="col-md-6 col-sm-6">{{product[0].titel}}</div>
+            <div class="col-md-3 col-sm-3">{{product[0].prijs}} &euro;</div>
+        </li>
+        {% endfor %}
+    </ul>
+    <strong>Totaal : {{totaal}} &euro;</strong>
+    
+    </section>
 {% endblock %}

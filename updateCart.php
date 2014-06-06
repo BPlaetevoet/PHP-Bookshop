@@ -21,6 +21,6 @@ if (isset($_GET["actie"])&& (isset($_GET["id"])) && (isset($_GET["returnurl"])))
     }
 }
 if (isset($_GET["reset"])&& $_GET["reset"]== "1"){
-    session_destroy();
+    unset($_SESSION["cartItems"]);
     header("location: ".$_GET["returnurl"]);    
 }

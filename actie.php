@@ -33,7 +33,7 @@ header ('Content-type: application/json');
 if($page=="registreer"){
         $fields_req = array("naam"=>true, 
             "voornaam"=>true, 
-            "email"=>true, 
+            "mail"=>true, 
             "adres"=>true, 
             "postcode"=>true, 
             "gemeente"=>true, 
@@ -41,7 +41,7 @@ if($page=="registreer"){
         checkfields($fields_req);
         $naam = \htmlspecialchars($_POST["naam"]);
         $voornaam = \htmlspecialchars($_POST["voornaam"]);
-        $mail = \htmlspecialchars($_POST["email"]);
+        $mail = \htmlspecialchars($_POST["mail"]);
         $adres =  \htmlspecialchars($_POST["adres"]);
         $postcode = \htmlspecialchars($_POST["postcode"]);
         $gemeente = \htmlspecialchars($_POST["gemeente"]);

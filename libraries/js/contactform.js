@@ -1,8 +1,34 @@
 $(document).ready(function() {
-   $("#feedbackSubmit").click(function() {
-    //clear fouten
-    contactForm.clearErrors();
+    var contactForm = {
+  isValidEmail: function (input) {
+    var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    return regex.test(input);
+  },
+  
+// Valideer dat de postcode bestaat uit 4 cijfers.
 
+  isValidPostcode: function (postcode) {
+    postcode = postcode.replace(/[^0-9]/g, '');
+    return (postcode.length === 4);
+  },
+  clearErrors: function () {
+    $('#emailAlert').remove();
+    $('#feedbackForm .help-block').hide();
+    $('#feedbackForm .form-group').removeClass('has-error');
+  },
+  addError: function ($input) {
+    $input.siblings('.help-block').show();
+    $input.parent('.form-group').addClass('has-error');
+  },
+  addAjaxMessage: function(msg, isError) {
+    $("#feedbackSubmit").after('<div id="emailAlert" class="alert alert-' + (isError ? 'danger' : 'success') + '" style="margin-top: 5px;">' + $('<div/>').text(msg).html() + '</div>');
+  }
+};
+
+   $("#feedbackSubmit").click(function() {
+//    //clear fouten
+    contactForm.clearErrors();
+//
     //controleer dat de velden ingevuld zijn
     var hasErrors = false;
     $('#feedbackForm input,textarea').not('.optional').each(function(){
@@ -13,10 +39,10 @@ $(document).ready(function() {
     });
     
     //controleer of bepaalde velden correct zijn ingevuld
-    var $email = $('#email');
-    if (!contactForm.isValidEmail($email.val())) {
+    var $mail = $('#mail');
+    if (!contactForm.isValidEmail($mail.val())) {
       hasErrors = true;
-      contactForm.addError($email);
+      contactForm.addError($mail);
     }
     var $postcode = $('#postcode');
     if(!contactForm.isValidPostcode($postcode.val())){
@@ -29,12 +55,12 @@ $(document).ready(function() {
        hasErrors = true;
        contactForm.addError($terms);
     }
-   
-    //in geval van errors terugkeren zonder verzenden
+//   
+//    //in geval van errors terugkeren zonder verzenden
     if (hasErrors) {
-      return false;
+      contactForm.addError('foutje');
     }
-    //verstuur de gegevens
+////    //verstuur de gegevens
     $.ajax({
       type: "POST",
       url: "actie.php",
@@ -58,30 +84,5 @@ $(document).ready(function() {
 //simpele validatie van gegevens
 
 // valideer e-mail adres
-var contactForm = {
-  isValidEmail: function (email) {
-    var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-    return regex.test(email);
-  },
-  
-// Valideer dat de postcode bestaat uit 4 cijfers.
-
-  isValidPostcode: function (postcode) {
-    postcode = postcode.replace(/[^0-9]/g, '');
-    return (postcode.length === 4);
-  },
-  clearErrors: function () {
-    $('#emailAlert').remove();
-    $('#feedbackForm .help-block').hide();
-    $('#feedbackForm .form-group').removeClass('has-error');
-  },
-  addError: function ($input) {
-    $input.siblings('.help-block').show();
-    $input.parent('.form-group').addClass('has-error');
-  },
-  addAjaxMessage: function(msg, isError) {
-    $("#feedbackSubmit").after('<div id="emailAlert" class="alert alert-' + (isError ? 'danger' : 'success') + '" style="margin-top: 5px;">' + $('<div/>').text(msg).html() + '</div>');
-  }
-};
 
 

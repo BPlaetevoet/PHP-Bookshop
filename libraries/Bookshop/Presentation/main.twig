@@ -19,8 +19,17 @@
             <script type="text/javascript" src="libraries/js/contactform.js"></script>
             <script type="text/javascript">
                 $(document).ready(function(){
-                    $('#js_warning').addClass('hidden');
-                });
+                    $('#js_warning').addClass('hidden'),
+                  // login-form-toggle
+                 $("#btnShowHide").click(function(){
+                // Use JQuery to toggle a Bootstrap "well" div
+                $("#showMe").toggle();  
+            });
+             $("#btnShowHide2").click(function(){
+                // Use JQuery to toggle a Bootstrap "well" div
+                $("#showMe2").toggle();  
+            });
+                    });
             </script>
      </head>
      <body>

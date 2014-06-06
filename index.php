@@ -9,7 +9,10 @@ use Bookshop\Business\FilmService;
 use Bookshop\Business\ProductService;
 use Bookshop\Business\UserService;
 $twigDataArray =array();
-
+if (isset($_GET["actie"])&&($_GET["actie"]=="uitloggen")){
+    unset($_SESSION["login"]);
+    header('location: index.php');
+}
 if (isset($_GET["id"])){
     $page = $_GET["id"];
 }else{
@@ -61,4 +64,3 @@ if (isset($_SESSION["admin"])){
 
 $view = $twig->render("$page.twig", $twigDataArray);
 print ($view);
-
