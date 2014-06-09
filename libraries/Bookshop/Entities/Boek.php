@@ -14,11 +14,7 @@ class Boek extends Product{
      * 
      */
     protected $auteur;
-    /** 
-     * @ManyToOne(targetEntity="Genre")
-     * @JoinColumn(name="genre_id", referencedColumnName="id")
-     */
-    protected $genre;
+
 
     
     public function __construct($titel, $prijs, $auteur, $genre){
@@ -27,18 +23,18 @@ class Boek extends Product{
         $this->auteur = $auteur;
         $this->genre = $genre;
     }
-    
-    public function getGenre(){
-        return $this->genre;
-    }
+
     public function getAuteur(){
         return $this->auteur ;
+    }
+    public function getGenre(){
+        return $this->genre;
     }
     
     public function setAuteur($auteur){
         $this->auteur = $auteur;
     }
-    public function setGenre ($genre){
+    public function setGenre($genre) {
         $this->genre = $genre;
     }
 

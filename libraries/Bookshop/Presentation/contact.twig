@@ -1,7 +1,6 @@
 {% extends "main.twig" %}
-{% block varaibelen %}
-    {%set active_page = "contact" %}
-{% endblock %}
+{%set active_page = page|capitalize %}
+
 
 {% block content %}
     <div class="col-md-6 col-md-offset-3">

@@ -1,12 +1,10 @@
 <!DOCTYPE HTML>
 <html>
     <head>
-        {% block variabelen %}
-            
-        {% endblock %}
+        
             
         
-        {% set navigation_bar = [['home', 'Home'], ['boeken', 'Boeken'], ['films', 'Films'], ['contact', 'contact']] -%}
+        {% set navigation_bar = [['home', 'Home'], ['producten&type=boeken', 'Boeken'], ['producten&type=films', 'Films'], ['contact', 'Contact']] -%}
         
         
             <meta charset="utf-8">
@@ -16,14 +14,16 @@
             <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
             <script src="libraries/js/bootstrap.min.js"></script>
             <!-- <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script> -->
+            <script type="text/javascript" src="libraries/js/modernizr.js"></script>
             <script type="text/javascript" src="libraries/js/contactform.js"></script>
-            <script type="text/javascript">
-                $(document).ready(function(){
-                    $('#js_warning').addClass('hidden'),
+       
+          <script type="text/javascript">
+              $(document).ready(function(){
+                {# $('#js_warning').addClass('hidden'),#}
                   // login-form-toggle
                  $("#btnShowHide").click(function(){
-                // Use JQuery to toggle a Bootstrap "well" div
-                $("#showMe").toggle();  
+                  // Use JQuery to toggle a Bootstrap "well" div
+                 $("#showMe").toggle();  
             });
              $("#btnShowHide2").click(function(){
                 // Use JQuery to toggle a Bootstrap "well" div
@@ -33,17 +33,29 @@
             </script>
      </head>
      <body>
+         <div id="site-content">
          <header>
         {% include 'header.twig' %}
          </header>
+         <div id="main-content">
          <div class="container">
+             <div class="site_pad">
+             U bevind zich <a href="index.php?id=home">Home</a>
+             {% if page != "home" %} <a href="index.php?id={{page}}"> / {{page|capitalize}}</a>{%endif%}
+             {%if type %}<a href="index.php?id={{page}}&type={{type}}"> / {{type|capitalize}}</a>{%endif%}
+             {% if soort %}<a href="index.php?id={{page}}&type={{type}}&cat={{soort.id}}"> / {{soort.omschrijving|capitalize}}</a>{%endif%}
+             </div>
             {% block content %}
                 
              
             {% endblock %}
+             </div> 
          </div>
+        <div id="footer">
              <footer>
                 {% include 'footer.twig' %}
              </footer>
+         </div>
+         </div>
      </body>        
 </html>

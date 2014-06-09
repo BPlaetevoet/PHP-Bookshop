@@ -1,0 +1,36 @@
+{# hoofdmenu.navigatie.template.twig #}
+   {%  block gsm_navigatie %}
+        <div class="visible-xs">
+            <nav class="navbar visible-xs" role="navigation">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#hoofdmenu">
+                       Toggle menu
+                        
+                    </button>
+{#                </div>#}
+                <div class="nav-collapse collapse" id="hoofdmenu">
+
+                    <ul class="nav navbar-nav">
+                        {%  for item in navigation_bar %}
+                        <li {%  if item[1]== active_page %} class="active"{% endif %}>
+                            <a href="index.php?id={{ item[0] }}">{{ item[1] }}</a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    {% endblock %}
+                </div>
+            </nav>
+        </div>
+        <div class="hidden-xs">
+            <nav class="nav" id="hoofdmenu-md">
+                {% block site_navigatie %}
+                <ul class="nav nav-tabs">
+                    {% for item in navigation_bar %}
+                    <li {%  if item[1]== active_page %} class="active"{% endif %}>
+                        <a href="index.php?id={{ item[0] }}">{{ item[1] }}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+                {% endblock %}
+            </nav>
+        </div>

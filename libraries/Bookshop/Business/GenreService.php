@@ -9,7 +9,7 @@ class GenreService{
         return $lijst;
     }
     public function getGenreById($mgr, $id){
-        $genre = GenreDAO::getById($mgr, $id);
+        $genre = GenreDAO::getGenreById($mgr, $id);
         return $genre;
     }
     public function getGenresEnAantallen($mgr){

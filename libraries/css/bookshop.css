@@ -5,33 +5,103 @@
     Description:
         Purpose of the stylesheet follows.
 */
-
+html, body {
+    height:100%;
+}
 root { 
     display: block;
 }
 .container{
-    width:80%;
+    width:95%;
     margin: 0 auto;
     clear:both;
 }
+#site-content{
+    min-height:100%;
+    position: relative;
+   
+}
+#main-content{ 
+    overflow:auto;
+    /*min-height:100%;*/
+    line-height: 1.42857;
+    padding: 10px;
+    padding-bottom: 180px;
+}
+.boeken {
+    background-image: url('../../images/bookshelf.jpg');
+   
+}
+.films {
+    background-image: url('../../images/filmslist.jpg');
+}
+.boeken, .films {
+    margin:20px;
+    padding: 50px;
+    background-size: 700px 200px;
+    width:350px;
+    height: 200px;
+    
+    border: 2px solid black;
+    border-radius: 10px;
+    display: inline-block;
+    color: white;
+    font-size:4em;
+    text-align: center;
+}
+
 ul {
     padding:0;
 }
 .product-lijst li {
+    padding: 5px 0px;
     list-style-type: none;
     clear: left;
+}
+ul li.product-lijst:nth-child(odd){
+    background-color: #d9edf7;
+    overflow:auto;
 }
 .cart a:hover{
     text-decoration: none;
     color:#fff;
 }
-footer {
-    background-color:#3071a9;
-    margin-top:1em;
+#footer {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;        
+    margin-top: -150px;
+    width: 100%;
+    height: 180px;
+    background-color:#282828;
     color:white;
 }
-.footer-comment{
-    padding: 15%;
+#footer h3{
+    color:whitesmoke;
+    font-weight: bold;
+}
+#footer li{
+     list-style-type:none;
+}
+#footer li a {
+    text-decoration: none;
+    color:white;
+}
+#footer li a:hover{
+    text-decoration:none;
+    color:#3071a9;
+}
+.container-xs-height{
+    display:table;
+    padding-left:0px;
+    padding-right:0px;
+ }
+.row-xs-height{
+      display:table-row;
+}
+.col-xs-height{
+      display:table-cell;
+      float:none;
 }
 .prijstabel {
     text-align: right;
@@ -42,8 +112,13 @@ td {
 tr {
     border-top: 1px solid #a6e1ec;
 }
-.cart {
-    text-align:right;
+
+.headerform, .cart {
+    position: relative;
+    min-height:1px;
+    padding-right:15px;
+    padding-left:15px;
+    text-align:center;
     background-color:rgba(0,0,0,0.5);
     margin-top:-1px;
     border-top: none;
@@ -52,20 +127,30 @@ tr {
     border-right: 1px solid black;
     border-radius: 0 0 5px 5px;
     color: #fff;
+    overflow: auto;
 }
 .cart table {
     margin-right: 5px;
     float: right;
 }
+
 .sidemenu ul {
     padding:0;
     margin:0;
+    overflow: auto;
 }
-#js_warning {
+.list-group-item{
+    overflow: hidden;
+}
+html.no-js #js_warning {
     background-color: red;
     width : 100%;
     height : 2.5em;
     text-align: center;
+}
+html.js #js_warning{
+    display:none;
+    visibility:hidden;
 }
 .top-page {
     position :fixed;
@@ -73,6 +158,7 @@ tr {
     /*height : 4.5em;*/
     background-color: #3071a9;
     z-index:1000;
+    color: #fff;
 }
 .top-page a {
     color:#fff;
@@ -103,30 +189,62 @@ tr {
 .nav-tabs {
     border-bottom: none;
 }
+.navbar-toggle{
+    float:none;
+}
 /*Social networking icons*/ 
-ul#social-networking{
-
-	
+ul#social-networking a li{
+    background-image: url('../../images/social-media-icons.png');
+    background-size: 330px 60px;
+    height: 30px;
+    width: 30px;
+   /*  Placing the icons */
+    float: right;
+    list-style-type: none;
+    margin-right: 2%;
+    float: left;	
 }
-#social-networking li {
+ul#social-networking a li.linkedin{background-position: -180px 0;}
+ul#social-networking a li.linkedin:hover {background-position: -180px -30px;}
 
-    background-image: url('../../images/social_icons_sprite.png');
+ul#social-networking a li.facebook {background-position: 0px 0px;}
+ul#social-networking a li.facebook:hover{background-position: 0 -30px;}
+
+#social-networking a li.twitter{background-position: -240px 0px;}
+#social-networking a li.twitter:hover {background-position: -240px -30px;}
+@media(max-width:639px){
+    .header-items{
+        padding-top: 75px;
+    }
+    .col-xs-6{
+        width:100%;
+    }
 }
-#social-networking li, #social-networking a {
-    width: 64px;
-    height: 64px;
-    display: block;
-    float: left;
+@media(max-width:768px){
+    aside.sidemenu ul.navigatie li.list-group-item{
+        display:inline-block;
+        float:left;
+        width:33%;
+        height: 50px;
+        overflow:hidden;
+        border-radius: 0;
+    }
+    aside.sidemenu ul.navigatie li.list-group-item:hover{
+        background-color:#3071a9;
+        color:white;
+    }
+    aside.sidemenu ul.navigatie li.list-group-item a{
+        display: block;
+        height:50px;
+    }
+    aside.sidemenu ul.navigatie li.list-group-item a:hover{
+        color:#fff;
+    }
 }
-ul#social-networking li.twitter {background-position: -192px 0;}
-ul#social-networking li.twitter:hover {background-position: -192px -32px;}
 
-ul#social-networking li.facebook {background-position: 0px 0px;}
-ul#social-networking li.facebook:hover{background-position: 0 -32px;}
-
-ul#social-networking li.linkedin {background-position: -288px 0px;}
-ul#social-networking li.linkedin {background-position: -288px -32px;}
-
-
-
+@media(min-width:980px){
+    .container{
+        width:80%;
+    }
+}
 

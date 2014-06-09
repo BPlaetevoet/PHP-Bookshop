@@ -10,9 +10,9 @@ if (isset($_POST["email"])&& (isset($_POST["password"]))){
     $login = userService::validateUser($mgr, $mail, $password);
     if ($login){
         $_SESSION["login"]= $login[0]->getId();
-        if ($login[0]->getAdmin()){
-            $_SESSION["admin"]= true;
-        }
+//        if (null !==($login[0]->getAdmin())){
+//            $_SESSION["admin"]= true;
+//        }
     }
     header('location: index.php');
  

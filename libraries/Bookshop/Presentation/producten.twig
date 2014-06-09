@@ -1,0 +1,23 @@
+{% extends "main.twig" %}
+{% set active_page = type|capitalize %}
+
+{# Boeken template #}
+{% block content %}
+{% if type %}
+    {% include 'sidemenu.genres.template.twig' %}
+    {% include 'productlist.template.twig' %}
+    {% else %}
+        <a href="index.php?id=producten&type=boeken">
+        <div class="boeken">
+            Boeken
+        </div>
+        </a>
+        <a href="index.php?id=producten&type=films">
+        <div class="films">
+            Films
+        </div>
+        </a>
+        {% endif %}
+    
+{% endblock %}
+

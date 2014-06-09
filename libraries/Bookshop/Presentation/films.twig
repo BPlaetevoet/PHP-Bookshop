@@ -21,7 +21,7 @@
             <div class="prijstabel col-md-3 col-sm-3"><strong>Prijs</strong></div>
             <ul>     
            {% for film in filmlijst %}
-                    <li>   
+                    <li class="product-lijst">   
             <div class="col-md-5 col-sm-5">{{film.titel}} ({{ film.speelduur}} min)</div>
             <div class="col-md-3 col-sm-3">{{film.Genre.omschrijving}}</div>
             <div class="prijstabel col-md-3 col-sm-3">{{film.getPrijs}}&euro;</div>

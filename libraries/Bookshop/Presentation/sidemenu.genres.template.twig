@@ -1,0 +1,9 @@
+{# sidemenu.genres.template #}
+<aside class="sidemenu col-sm-3">
+        <h2>Genres</h2>
+        <ul class="navigatie">
+        {% for genre in genrelijst %}
+                <li class="list-group-item"><a href="index.php?id={{page}}&type={{ type }}&cat={{ genre["id"] }}">{{ genre["omschrijving"]|capitalize }}<span class="badge pull-right">{{ genre["aantal"] }}</span></a></li>
+         {% endfor %}
+        </ul>
+    </aside>

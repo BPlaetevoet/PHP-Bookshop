@@ -4,17 +4,18 @@
     <div id="js_warning"><strong>Deze site vereist Javascript, gelieve javascript aan te zetten en de pagina opnieuw te laden !!</strong></div>
 <div class="container">
     {% block navigation %}
-<div class="col-md-6 col-sm-6">
-<nav class="nav" id="hoofdmenu">
+<div class="pull-left">
+    {% include 'hoofdmenu.navigatie.template.twig' %}
+{#<nav class="nav" id="hoofdmenu">
     <ul class="nav nav-tabs">
         {% for item in navigation_bar %}
-        <li{% if item[0] == page %} class="active"{% endif %}>
+        <li{% if item[1] == active_page %} class="active"{% endif %}>
             <a href="index.php?id={{item[0] }}">{{item[1]}}</a></li>
         {% endfor %}
     </ul>
         
         
-</nav>
+</nav>#}
 </div>
 
 
@@ -37,13 +38,16 @@
     </div>
 <div class="header-items">
 <div class="container">
-    <div class="col-md-6 logo">
-        <a href="index.php"><img class="img-responsive" src="images/logo.jpg" ></a>
+    <div class="col-md-6 col-sm-6 col-xs-6 logo">
+        <a href="index.php"><img class="img-responsive" src="images/logo-web.png" ></a>
     </div>
     
 {#    Rechterkant header plaats voorzien voor cart-items, login en registratieformulieren#}
                 
-    <div id="showMe" class="well headerform col-md-6 col-sm-6 pull-right" style="display:none;">
+    
+
+    <div class="header-info">
+        <div id="showMe" class="well headerform" style="display:none;">
         <form role="login" class="form-inline" method="post" action="login.php">
             <div class="form-group">
                 <label class="sr-only" for="email">Email</label>
@@ -56,39 +60,19 @@
             <button type="submit" class="btn btn-primary">Inloggen</button>
         </form>
     </div>
-
-    <div class="col-md-6 col-sm-6 cart">
        {% if cartItems %}
-    
-        <h3>Uw winkelwagentje</h3>
-        <table>
-        {% for product in cartItems %}
-            <tr>
-                <td>{{ product[1] }} x</td>
-                <td>{{ product[0].titel }}</td>
-                <td> {{ product[0].prijs }} &euro;</td>
-                <td><a href="updateCart.php?actie=delete&id={{ product[0].id }}&returnurl={{current_url}}"><button type="button" class=btn btn-small btn-danger"><span class="glyphicon glyphicon-remove"></span></button></a>
-                
-            </tr>
-        {% endfor %}
-                <tr style="border-top:1px solid;">
-                <td colspan="2"> Totaal :</td>
-                <td>{{ totaal }} &euro;</td>
-                </tr>
-        
-        <tr style="border-top:1px solid;">
-            <td><a href="index.php?id=viewCart">betalen</a></td>
-            <td><a href="updateCart.php?reset=1&returnurl={{ current_url }}">Wissen</a></td>
-            </tr>
-            </table>
-      
+    <div class="cart">
+        <img src="images/shopping-cart-white-md.png"/>
+       {{ countItems }} item{% if countItems>1%}s{%endif%} : Totaal = {{ totaal }} &euro; &nbsp; &nbsp;
+        <a href="index.php?id=viewCart"><button class="btn btn-primary">Bekijken</button></a>
+    </div> 
         {% endif %}
-  
-    
-    </div>
-<div id="showMe2" class="well headerform col-md-6 col-sm-6 pull-right" style="display:none;">
+  <div id="showMe2" class="well headerform" style="display:none;">
                     {% include 'contactform.template.twig' %}
                 </div>
+    
+    </div>
+
 
 </div>
 {% endblock siteheader %}

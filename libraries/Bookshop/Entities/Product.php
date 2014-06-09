@@ -48,7 +48,5 @@ abstract class Product{
     public function setPrijs($prijs){
         $this->prijs = $prijs;
     }
-    
-    
 }
 

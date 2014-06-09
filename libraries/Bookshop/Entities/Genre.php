@@ -34,7 +34,3 @@ class Genre{
         $this->omschrijving = $omschrijving;
     }
 }
-
-class FilmsGenre extends Genre{
-    
-}

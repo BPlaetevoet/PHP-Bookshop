@@ -1,30 +1,17 @@
-{% extends "main.twig" %}
-{% block variabelen %}
-{% set active_page = "boeken" %}
-{% endblock %}
+{# productlist.template.twig #}
 
-{# Boeken template #}
-{% block content %}
-    <aside class="sidemenu col-sm-3 col-md-3">
-        <h2>Genres</h2>
-        <ul class="navigatie">
-        {% for genre in genrelijst %}
-                <li class="list-group-item"><a href="index.php?id=boeken&cat={{ genre["id"] }}">{{ genre["omschrijving"] }}<span class="badge pull-right">{{ genre["aantal"] }}</span></a></li>
-         {% endfor %}
-        </ul>
-    </aside>
-        <section class="col-sm-9 col-md-9 product-lijst">
-<h1 class="bg-info">Boekenlijst</h1>
+        <section class="col-xs-12 col-sm-9 product-lijst">
+{#<h1 class="bg-info">u bevind zich <a href="index.php?id={{page}}">{{page}}</a>{%if type %}<a href="index.php?id={{page}}&type={{type}}"> / {{type|capitalize}}</a>{%endif%}</h1>#}
 <div class="col-xs-5"><strong><a href="{{ current_url }}&orderby=titel">Titel</a></strong></div>
 <div class="col-xs-4"><strong>Genre</strong></div>
 <div class="prijstabel col-xs-2"><strong><a href="{{ current_url }}&orderby=prijs">Prijs</a></strong></div>
             <ul>     
-                {% for boek in boekenlijst %}
+                {% for product in productlijst %}
                     <li class="product-lijst">   
-            <div class="col-xs-5">{{boek.titel}} ({{ boek.auteur }})</div>
-            <div class="col-xs-4">{{boek.genre.omschrijving}}</div>
-            <div class="prijstabel col-xs-2">{{boek.getPrijs}}&euro;</div>
-            <div class="col-xs-1"><a href="updateCart.php?actie=toevoegen&id={{ boek.id }}&returnurl={{ current_url }}">
+            <div class="col-xs-5">{{product.titel}} ({% if type == 'boeken' %}{{ product.auteur }}{% else %}{{product.speelduur}} min.{%endif%})</div>
+            <div class="col-xs-4">{{product.genre.omschrijving}}</div>
+            <div class="prijstabel col-xs-2">{{product.getPrijs}}&euro;</div>
+            <div class="col-xs-1"><a href="updateCart.php?actie=toevoegen&id={{ product.id }}&returnurl={{ current_url }}">
                     <span class="glyphicon glyphicon-shopping-cart"></span></a>
                 </div>
                     </li>
@@ -34,13 +21,19 @@
                 &nbsp;
                 <br />
                 {% if user.admin == 1 %}
-                Of voeg een boek toe :
+                    
+                Of voeg een artikel toe :
                 <br />&nbsp;<br />
                 <form role="add" method="post" action="admin.php">
-                    <input type="hidden" name="product" id="product" value="boek">
+                    <input type="hidden" name="product" id="product" value="{{type}}">
                     <input type="hidden" name="return_url" id="return_url" value="{{current_url}}">
                     <input type="text" name="titel" id="titel" placeholder="titel">
+                    {% if type == "boeken" %}
                     <input type="text" name="auteur" id="auteur" placeholder="auteur">
+                    {%elseif type == "films" %}
+                        <input type="number" name="speelduur" id="speelduur" placeholder="90">min
+                    {%endif%}
+                       
                     <select name="genre" id="genre">
                         {% for genre in genrelijst %}
                             <option value="{{genre.id}}">{{genre.omschrijving}}</option>
@@ -53,5 +46,3 @@
                     {% endif %}
                     
         </section>
-{% endblock %}
-

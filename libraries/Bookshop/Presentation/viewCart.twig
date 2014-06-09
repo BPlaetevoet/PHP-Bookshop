@@ -8,21 +8,15 @@
             {{user.adres}}<br />
             {{user.plaats.postcode}} {{user.plaats.gemeente }}<br />
             {% else %}
-                <div id="loginform"">
-                    <button id="btnShowHide" class="btn btn-primary" role="button">Login</button>
-                    
-                <button id="btnShowHide2" class="btn btn-primary" role="button">Registreer</button>
-                <div id="showMe" class="well" style="display:none;">
-                        
-                        <form role="login" method="post" action="login.php">
+                <div id="loginform">
+                    <form role="login" method="post" action="login.php">
                         <input type="text" style="margin:10px;" name="email" id="email" placeholder="e-mail"/>
                         <input type="password" style="margin:10px;" name="password" id="password" placeholder="wachtwoord"/>
                         <input type="submit" class="btn btn-primary" style="margin:10px;" name="submit" value="Inloggen">
-                        </form>
-                    </div>
-                <div id="showMe2" class="well" style="display:none;">
-                    {% include 'contactform.template.twig' %}
+                    </form>
                 </div>
+                Nog geen account? registreer u dan <a href="index.php?id=registreer">hier</a>. <br />
+             
             {%endif%}
             
     </aside>
