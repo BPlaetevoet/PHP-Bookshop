@@ -1,7 +1,23 @@
 {% extends 'main.twig' %}
 {% block content %}
-    <aside class="user-info col-md-4 col-sm-4"> 
-        <h2>Verzendgegevens :</h2>
+    <section class="product-lijst col-xs-12 col-sm-8">
+    <h1 class="bg-info">Uw gekozen producten :</h1>
+    <div class="col-xs-2"><strong>Aantal</strong></div>
+    <div class="col-xs-6"><strong>Titel</strong></div>
+    <div class="col-xs-4"><strong>Prijs</strong></div>
+    <ul>
+    {% for product in cartItems %}
+        <li class="product-lijst">
+            <div class="col-xs-2">{{ product[1] }}x</div>
+            <div class="col-xs-6">{{product[0].titel}}</div>
+            <div class="col-xs-4">{{product[0].prijs}} &euro;</div>
+        </li>
+        {% endfor %}
+    </ul>
+    <p>&nbsp;</p>
+    <strong>Totaal : {{countItems}} items {{totaal}} &euro;</strong><br />
+    <h1 class="bg-info">Verzendgegevens :</h1>
+    
         {% if user %}
            
             {{user.voornaam}} {{user.naam}}<br />
@@ -18,23 +34,10 @@
                 Nog geen account? registreer u dan <a href="index.php?id=registreer">hier</a>. <br />
              
             {%endif%}
-            
-    </aside>
-    <section class="product-lijst col-md-8 col-sm-8">
-    <h1 class="bg-info">Uw winkelwagentje</h1>
-    <div class="col-md-2 col-sm-2"><strong>Aantal</strong></div>
-    <div class="col-md-6 col-sm-6"><strong>Titel</strong></div>
-    <div class="col-md-3 col-sm-3"><strong>Prijs</strong></div>
-    <ul>
-    {% for product in cartItems %}
-        <li>
-            <div class="col-md-2 col-sm-2">{{ product[1] }}x</div>
-            <div class="col-md-6 col-sm-6">{{product[0].titel}}</div>
-            <div class="col-md-3 col-sm-3">{{product[0].prijs}} &euro;</div>
-        </li>
-        {% endfor %}
-    </ul>
-    <strong>Totaal : {{totaal}} &euro;</strong>
-    
+            {% if user %}
+    <button class="btn btn-primary" role="button">Bevestigen</button>
+            {% else %}<div class="fake-btn">Bevestigen</div>
+                {% endif %}
+    <a href="updateCart.php?reset=1"><button class="btn btn-primary" role="button">Wissen</button></a>
     </section>
 {% endblock %}

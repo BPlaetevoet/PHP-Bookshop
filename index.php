@@ -72,12 +72,11 @@ if ($page == "producten"){
         if (isset($_GET['cat'])){
             $categorie = $_GET['cat'];
             $twigDataArray["soort"]= GenreService::GetGenreById($mgr, $categorie);
+            $producten = FilmService::getByGenre($mgr, $categorie);
             if (isset($_GET['orderby'])){
                 $orderby = $_GET['orderby'];
                 $producten = FilmService::getByGenreAndOrdered($mgr, $categorie, $orderby);
-            }
-            $producten = FilmService::getByGenre($mgr, $categorie);
-            
+            }           
         }
         $genrelijst = FilmService::getGenresEnAantallen($mgr);
     }

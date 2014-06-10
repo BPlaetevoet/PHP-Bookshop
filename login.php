@@ -14,7 +14,7 @@ if (isset($_POST["email"])&& (isset($_POST["password"]))){
 //            $_SESSION["admin"]= true;
 //        }
     }
-    header('location: index.php');
+    header("location: ".$_SERVER['HTTP_REFERER']);
  
 }
 

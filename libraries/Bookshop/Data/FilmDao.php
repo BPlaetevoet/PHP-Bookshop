@@ -20,7 +20,7 @@ class FilmDAO{
         return $lijst;
     }
     public function getByGenreAndOrdered($mgr, $genre, $orderby){
-        $query = $mgr->createQuery('select f from Bookshop\\Entities\\Film f order by f.'.$orderby);
+        $query = $mgr->createQuery('select f from Bookshop\\Entities\\Film f  where f.genre ='.$genre.' order by f.'.$orderby);
         $lijst = $query->getResult();
         return $lijst;
     }

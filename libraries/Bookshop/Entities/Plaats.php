@@ -3,7 +3,7 @@
 namespace Bookshop\Entities;
 /** 
  * @Entity
- * @Table(name="plaats")
+ * @Table(name="plaats", indexes={@Index(name="gemeente_idx", columns={"gemeente"})})
  */
 class Plaats{
     /** 

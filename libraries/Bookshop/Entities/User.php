@@ -4,7 +4,7 @@ namespace Bookshop\Entities;
 
 /** 
  * @Entity
- * @Table(name="users")
+ * @Table(name="users", indexes={@Index(name="email_idx", columns={"email"})})
  */
 class User {
     /** 
