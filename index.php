@@ -2,7 +2,7 @@
 session_start();
 
 require_once 'bootstrap.php';
-
+use Bookshop\Data\CartItemDao;
 use Bookshop\Business\BoekService;
 use Bookshop\Business\GenreService;
 use Bookshop\Business\FilmService;
@@ -31,7 +31,7 @@ if (isset($_SESSION["cartItems"])){
     $countItems = 0;
     $totaal = 0;
     $cartItems = array();
-    foreach ($_SESSION["cartItems"] as $item => $aantal){
+    foreach ($_SESSION["cartItems"] as $item=>$aantal){
         $product = ProductService::getById($mgr, $item);
         array_push($cartItems, array($product, $aantal));
         $countItems += 1*$aantal;
@@ -103,3 +103,7 @@ if (isset($_SESSION["admin"])){
 
 $view = $twig->render("$page.twig", $twigDataArray);
 print ($view);
+
+print '<pre>';
+print_r($_SESSION["cartItems"]);
+print '</pre>';

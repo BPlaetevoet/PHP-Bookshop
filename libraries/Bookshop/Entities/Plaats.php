@@ -3,7 +3,9 @@
 namespace Bookshop\Entities;
 /** 
  * @Entity
- * @Table(name="plaats", indexes={@Index(name="gemeente_idx", columns={"gemeente"})})
+ * @Table(name="plaats", 
+ *          uniqueConstraints={@UniqueConstraint(name="gemeente_unique", columns={"gemeente"})},
+ *              indexes={@Index(name="gemeente_idx", columns={"gemeente"})})
  */
 class Plaats{
     /** 

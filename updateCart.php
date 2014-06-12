@@ -3,13 +3,16 @@
 session_start();
 
 require_once 'bootstrap.php';
-
-
-use Bookshop\Business\BoekService;
+use Bookshop\Business\ProductService;
+// use Bookshop\Business\CartItemService;
+//use Bookshop\Business\BoekService;
 
 if (isset($_GET["actie"])&& (isset($_GET["id"])) && (isset($_GET["returnurl"]))){
+    if(!isset($_SESSION["cartItems"])){
+        $_SESSION["cartItems"]= array();
+    }
     if ($_GET["actie"]=="toevoegen"){
-        $_SESSION["cartItems"][$_GET["id"]] ++ ;
+         $_SESSION["cartItems"][$_GET["id"]] ++ ;
         header("location: ".$_SERVER['HTTP_REFERER']);
         }
     if ($_GET["actie"]=="delete"){

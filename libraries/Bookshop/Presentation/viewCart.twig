@@ -6,11 +6,11 @@
     <div class="col-xs-6"><strong>Titel</strong></div>
     <div class="col-xs-4"><strong>Prijs</strong></div>
     <ul>
-    {% for product in cartItems %}
+    {% for item in cartItems %}
         <li class="product-lijst">
-            <div class="col-xs-2">{{ product[1] }}x</div>
-            <div class="col-xs-6">{{product[0].titel}}</div>
-            <div class="col-xs-4">{{product[0].prijs}} &euro;</div>
+            <div class="col-xs-2">{{ item[1] }}x</div>
+            <div class="col-xs-6">{{item[0].titel}}</div>
+            <div class="col-xs-4">{{item[0].prijs}} &euro;</div>
         </li>
         {% endfor %}
     </ul>
