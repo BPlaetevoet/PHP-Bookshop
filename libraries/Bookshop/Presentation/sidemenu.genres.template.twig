@@ -3,7 +3,8 @@
         <h2>Genres</h2>
         <ul class="navigatie">
         {% for genre in genrelijst %}
-                <li class="list-group-item"><a href="index.php?id={{page}}&type={{ type }}&cat={{ genre["id"] }}">{{ genre["omschrijving"]|capitalize }}<span class="badge pull-right">{{ genre["aantal"] }}</span></a></li>
+                <li class="list-group-item {% if genre["id"] == soort.id %}active{%endif%}"><a href="index.php?id={{page}}&type={{ type }}&cat={{ genre["id"] }}">{{ genre["omschrijving"]|capitalize }}<span class="badge pull-right">{{ genre["aantal"] }}</span></a></li>
          {% endfor %}
+      
         </ul>
     </aside>

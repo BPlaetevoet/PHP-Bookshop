@@ -5,8 +5,18 @@
     Description:
         Purpose of the stylesheet follows.
 */
+
 html, body {
     height:100%;
+}
+ul {
+    padding:0;
+}
+td {
+    padding: 5px;
+}
+tr {
+    border-top: 1px solid #a6e1ec;
 }
 root { 
     display: block;
@@ -18,101 +28,9 @@ root {
 }
 #site-content{
     min-height:100%;
-    position: relative;
-   
+    position: relative; 
 }
-#main-content{ 
-    overflow:auto;
-    /*min-height:100%;*/
-    line-height: 1.42857;
-    padding: 10px;
-    padding-bottom: 200px;
-}
-.boeken {
-    background-image: url('../../images/bookshelf.jpg');
-   
-}
-.films {
-    background-image: url('../../images/filmslist.jpg');
-}
-.boeken, .films {
-    margin:20px;
-    padding: 50px;
-    background-size: 700px 200px;
-    width:350px;
-    height: 200px;
-    
-    border: 2px solid black;
-    border-radius: 10px;
-    display: inline-block;
-    color: white;
-    font-size:4em;
-    text-align: center;
-}
-
-ul {
-    padding:0;
-}
-.product-lijst li {
-    padding: 5px 0px;
-    list-style-type: none;
-    clear: left;
-}
-ul li.product-lijst:nth-child(odd){
-    background-color: #d9edf7;
-    overflow:auto;
-}
-.cart a:hover{
-    text-decoration: none;
-    color:#fff;
-}
-#footer {
-    position: absolute;
-    bottom: 0px;
-    left: 0px;        
-    margin-top: -150px;
-    width: 100%;
-    height: 180px;
-    background-color:#282828;
-    color:white;
-}
-#footer h3{
-    color:whitesmoke;
-    font-weight: bold;
-}
-#footer li{
-     list-style-type:none;
-}
-#footer li a {
-    text-decoration: none;
-    color:white;
-}
-#footer li a:hover{
-    text-decoration:none;
-    color:#3071a9;
-}
-.container-xs-height{
-    display:table;
-    padding-left:0px;
-    padding-right:0px;
- }
-.row-xs-height{
-      display:table-row;
-}
-.col-xs-height{
-      display:table-cell;
-      float:none;
-}
-.prijstabel {
-    text-align: right;
-}
-td {
-    padding: 5px;
-}
-tr {
-    border-top: 1px solid #a6e1ec;
-}
-
+/*************************** header specifiek ************************/
 .headerform, .cart {
     position: relative;
     min-height:1px;
@@ -129,28 +47,13 @@ tr {
     color: #fff;
     overflow: auto;
 }
+.cart a:hover{
+    text-decoration: none;
+    color:#fff;
+}
 .cart table {
     margin-right: 5px;
     float: right;
-}
-.fake-btn {
-    color: #fff;
-    background-color: #C0C0C0;
-    border-color: #C6C6C6;
-    display:inline-block;
-    padding:6px 12px;
-    margin-bottom:0px;
-    font-size:14px;
-    vertical-align:middle;
-    border-radius:4px;
-}
-.sidemenu ul {
-    padding:0;
-    margin:0;
-    overflow: auto;
-}
-.list-group-item{
-    overflow: hidden;
 }
 html.no-js #js_warning {
     background-color: red;
@@ -165,7 +68,6 @@ html.js #js_warning{
 .top-page {
     position :fixed;
     width : 100%;
-    /*height : 4.5em;*/
     background-color: #3071a9;
     z-index:1000;
     color: #fff;
@@ -202,7 +104,125 @@ html.js #js_warning{
 .navbar-toggle{
     float:none;
 }
-/*Social networking icons*/ 
+/***************************Main content*****************************/
+
+#main-content{ 
+    overflow:auto;
+    line-height: 1.42857;
+    padding-bottom: 220px;
+}
+.site_pad{
+    padding: 15px;
+    border-bottom: 1px dotted darkslategray;
+    margin-bottom: 10px;
+}
+.prijstabel {
+    text-align: right;
+}
+
+
+
+.fake-btn {
+    color: #fff;
+    background-color: #C0C0C0;
+    border-color: #C6C6C6;
+    display:inline-block;
+    padding:6px 12px;
+    margin-bottom:0px;
+    font-size:14px;
+    vertical-align:middle;
+    border-radius:4px;
+}
+.sidemenu ul {
+    padding:0;
+    margin:0;
+    overflow: auto;
+}
+.list-group-item{
+    overflow: hidden;
+}
+.boeken {
+    background-image: url('../../images/bookshelf.jpg');
+   
+}
+.films {
+    background-image: url('../../images/filmslist.jpg');
+}
+.boeken, .films {
+    font-family: league-gothic, sans-serif;
+    margin:20px 0;
+    padding: 50px;
+    background-size: 1600px 200px;
+    width:100%;
+    height: 200px;
+    border: 2px solid black;
+    border-radius: 10px;
+    display: inline-block;
+    color: white;
+    font-size:4em;
+    text-align: center;
+}
+
+.product-lijst li {
+    padding: 5px 0px;
+    list-style-type: none;
+    clear: left;
+}
+ul li.product-lijst:nth-child(odd){
+    background-color: #d9edf7;
+    overflow:auto;
+}
+/************************ Footer ************************/
+#footer{
+    position: absolute;
+    bottom: 0px;
+    left: 0px;        
+    margin-top: -150px;
+    width: 100%;
+    height: 200px;
+    background-color:#282828;
+    color: white;
+}
+.demo-warning{
+    background-color: red;
+    padding:5px;
+    color: black;
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+}
+
+#footer h3{
+    color:whitesmoke;
+    font-weight: bold;
+}
+#footer li{
+     list-style-type:none;
+}
+#footer li a {
+    text-decoration: none;
+    color:white;
+}
+#footer li a:hover{
+    text-decoration:none;
+    color:#3071a9;
+}
+
+/* Maakt tabellen dezelfde hoogte in footer */
+.container-xs-height{
+    display:table;
+    padding-left:0px;
+    padding-right:0px;
+ }
+.row-xs-height{
+      display:table-row;
+}
+.col-xs-height{
+      display:table-cell;
+      float:none;
+}
+
+/************************Social networking icons******************************/ 
 ul#social-networking a li{
     background-image: url('../../images/social-media-icons.png');
     background-size: 330px 60px;
@@ -222,15 +242,14 @@ ul#social-networking a li.facebook:hover{background-position: 0 -30px;}
 
 #social-networking a li.twitter{background-position: -240px 0px;}
 #social-networking a li.twitter:hover {background-position: -240px -30px;}
-@media(max-width:639px){
+/************************** Media-width rules ********************************/
+@media(max-width:768px){
     .header-items{
         padding-top: 75px;
     }
     .col-xs-6{
         width:100%;
     }
-}
-@media(max-width:768px){
     aside.sidemenu ul.navigatie li.list-group-item{
         display:inline-block;
         float:left;

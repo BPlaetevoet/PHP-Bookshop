@@ -8,10 +8,11 @@ class ProductDao{
         $product = $mgr->getRepository('Bookshop\\Entities\\Product')->find($id);
         return $product;
     }
+    public function getAll($mgr){
+        $query = $mgr->createQuery('select p from Bookshop\\Entities\\Product p ');
+        $lijst= $query->getResult();
+        return $lijst;
+    }
 }
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 

@@ -8,8 +8,7 @@ $(document).ready(function() {
 // Valideer dat de postcode bestaat uit 4 cijfers.
 
   isValidPostcode: function (postcode) {
-    postcode = postcode.replace(/[^0-9]/g, '');
-    return (postcode.length === 4);
+    
   },
   clearErrors: function () {
     $('#emailAlert').remove();
@@ -21,11 +20,10 @@ $(document).ready(function() {
     $input.parent('.form-group').addClass('has-error');
   },
   addAjaxMessage: function(msg, isError) {
-    $("#feedbackSubmit").after('<div id="emailAlert" class="alert alert-' + (isError ? 'danger' : 'success') + '" style="margin-top: 5px;">' + $('<div/>').text(msg).html() + '</div>');
+  $("#feedbackSubmit, #contactSubmit").after('<div id="emailAlert" class="alert alert-' + (isError ? 'danger' : 'success') + '" style="margin-top: 5px;">' + $('<div/>').text(msg).html() + '</div>');
   }
 };
-
-   $("#feedbackSubmit").click(function() {
+$("#feedbackSubmit, #contactSubmit").click(function() {
 //    //clear fouten
     contactForm.clearErrors();
 //
@@ -44,21 +42,20 @@ $(document).ready(function() {
       hasErrors = true;
       contactForm.addError($mail);
     }
-    var $postcode = $('#postcode');
-    if(!contactForm.isValidPostcode($postcode.val())){
-        hasErrors = true;
-        contactForm.addError($postcode);
-    }
+    if ("#feedbackSubmit"){
+
     var $terms = $('#terms');
     if ($terms.is(':checked')){
     }else{
        hasErrors = true;
        contactForm.addError($terms);
     }
+    }
 //   
 //    //in geval van errors terugkeren zonder verzenden
     if (hasErrors) {
-      contactForm.addError('foutje');
+        return false;
+
     }
 ////    //verstuur de gegevens
     $.ajax({
@@ -68,21 +65,15 @@ $(document).ready(function() {
       success: function(data)
       {
         contactForm.addAjaxMessage(data.message, false);
-        
+        // Pagina vernieuwen 
+        setTimeout("$(location.reload());",2000);
       },
       error: function(response)
       {
-        contactForm.addAjaxMessage(response.responseJSON.message, true);
+        contactForm.addAjaxMessage(response.responseJson.message, true);
       }
     });
     return false;
   });
 });
-
-  
-
-//simpele validatie van gegevens
-
-// valideer e-mail adres
-
 

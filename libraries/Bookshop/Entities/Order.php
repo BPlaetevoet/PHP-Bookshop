@@ -43,7 +43,7 @@ class Order{
         return $this->id;
     }
     public function getUser_Id(){
-        return $this->userid;
+        return $this->user_id;
     }
     public function getBedrag(){
         return $this->bedrag;

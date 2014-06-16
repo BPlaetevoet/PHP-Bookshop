@@ -13,6 +13,10 @@ class BoekService{
         $lijst= BoekDao::getAllOrdered($mgr, $orderby);
         return $lijst;
     }
+    public function getLatest($mgr){
+        $lijst = BoekDao::getLatest($mgr);
+        return $lijst;
+    }
     public function getByGenre($mgr, $genreId){
         $lijst = BoekDao::getAllFromGenre($mgr, $genreId);
         return $lijst;

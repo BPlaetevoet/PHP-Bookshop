@@ -2,13 +2,27 @@
 session_start();
 
 require_once 'bootstrap.php';
-use Bookshop\Data\CartItemDao;
 use Bookshop\Business\BoekService;
 use Bookshop\Business\GenreService;
 use Bookshop\Business\FilmService;
 use Bookshop\Business\ProductService;
 use Bookshop\Business\UserService;
+use Bookshop\Business\OrderService;
+
 $twigDataArray =array();
+if(isset($_SESSION["login"])){
+    $id = $_SESSION["login"];
+    $user = UserService::getUserById($mgr, $id);
+    if ($user->getAdmin()==1){
+        $_SESSION["admin"]=1;
+    }else{
+        $_SESSION["admin"]=0;
+    }
+    $twigDataArray["user"] = $user;
+}
+if (isset($_SESSION["admin"])){
+    $twigDataArray["admin"] = 1;
+}
 if (isset($_GET["actie"])&&($_GET["actie"]=="uitloggen")){
     unset($_SESSION["login"]);
     unset($_SESSION["admin"]);
@@ -17,8 +31,68 @@ if (isset($_GET["actie"])&&($_GET["actie"]=="uitloggen")){
 if (isset($_GET["id"])){
     $page = $_GET["id"];
 }else{
-    $page = "home";
-}
+$page="home";}
+
+switch ($page){
+        case "home":
+            $boekenlijst = BoekService::getLatest($mgr);
+            $filmlijst = FilmService::getLatest($mgr);
+            $twigDataArray["boekenlijst"]=$boekenlijst;
+            $twigDataArray["filmlijst"]=$filmlijst;
+            break;
+        case "producten":
+            if (isset($_GET["type"])){
+                $type = $_GET["type"];
+                $twigDataArray["type"] = $type;
+                    if ($type == "boeken"){
+                        $producten = BoekService::getBoekenOverzicht($mgr);
+                    if (isset($_GET['orderby'])){
+                        $orderby = $_GET['orderby'];
+                        $producten = BoekService::getOrderedOverzicht($mgr, $orderby);
+                    }
+                if(isset($_GET["cat"])){
+                    $categorie = $_GET['cat'];
+                    $producten = BoekService::getByGenre($mgr, $categorie);
+                    $twigDataArray["soort"]=  GenreService::getGenreById($mgr, $categorie);
+                if(isset($_GET['orderby'])){
+                    $orderby = $_GET['orderby'];
+                    $producten = BoekService::GetByGenreAndOrdered($mgr, $categorie, $orderby);
+                }  
+            }
+            $genrelijst = BoekService::getGenresEnAantallen($mgr);
+            }
+            if ($type == "films"){
+                $producten = FilmService::getFilmOverzicht($mgr);
+                    if (isset($_GET['orderby'])){
+                        $orderby = $_GET['orderby'];
+                        $producten = FilmService::getOrderedOverzicht($mgr, $orderby);
+                    }
+                    if (isset($_GET['cat'])){
+                        $categorie = $_GET['cat'];
+                        $twigDataArray["soort"]= GenreService::GetGenreById($mgr, $categorie);
+                        $producten = FilmService::getByGenre($mgr, $categorie);
+                    if (isset($_GET['orderby'])){
+                        $orderby = $_GET['orderby'];
+                        $producten = FilmService::getByGenreAndOrdered($mgr, $categorie, $orderby);
+                    }           
+                }
+                $genrelijst = FilmService::getGenresEnAantallen($mgr);
+            }
+            $twigDataArray["productlijst"] = $producten; 
+            $twigDataArray["genrelijst"] = $genrelijst;
+            }
+        break;
+        case "bevestiging":
+            if (!empty($user)){
+                $bestelling = OrderService::ToonBestellingVanUser($mgr, $user);
+                $twigDataArray["bestelling"]= $bestelling;
+            }else{
+                // Todo : Toon niet ingelogd exception
+            }
+        break;
+        
+    }
+
 $current_url =parse_url($_SERVER['REQUEST_URI']);
 if (isset($current_url['query'])){
    parse_str($current_url['query'], $parts);
@@ -27,6 +101,9 @@ if (isset($current_url['query'])){
 }
 $twigDataArray["page"]= $page;
 $twigDataArray["current_url"] = $current_url;
+
+// functies voor het winkelkarretje :
+
 if (isset($_SESSION["cartItems"])){
     $countItems = 0;
     $totaal = 0;
@@ -41,69 +118,8 @@ if (isset($_SESSION["cartItems"])){
     $twigDataArray["cartItems"] = $cartItems;
     $twigDataArray["totaal"] = $totaal;
 }
-if ($page == "producten"){
-    if (isset($_GET["type"])){
-    $type = $_GET["type"];
-    $twigDataArray["type"] = $type;
-    if ($type == "boeken"){
-        $producten = BoekService::getBoekenOverzicht($mgr);
-            if (isset($_GET['orderby'])){
-                $orderby = $_GET['orderby'];
-                $producten = BoekService::getOrderedOverzicht($mgr, $orderby);
-            }
-            if(isset($_GET["cat"])){
-                $categorie = $_GET['cat'];
-                $producten = BoekService::getByGenre($mgr, $categorie);
-                $twigDataArray["soort"]=  GenreService::getGenreById($mgr, $categorie);
-                if(isset($_GET['orderby'])){
-                    $orderby = $_GET['orderby'];
-                    $producten = BoekService::GetByGenreAndOrdered($mgr, $categorie, $orderby);
-                }
-                
-            }
-            $genrelijst = BoekService::getGenresEnAantallen($mgr);
-    }
-    if ($type == "films"){
-        $producten = FilmService::getFilmOverzicht($mgr);
-        if (isset($_GET['orderby'])){
-            $orderby = $_GET['orderby'];
-            $producten = FilmService::getOrderedOverzicht($mgr, $orderby);
-        }
-        if (isset($_GET['cat'])){
-            $categorie = $_GET['cat'];
-            $twigDataArray["soort"]= GenreService::GetGenreById($mgr, $categorie);
-            $producten = FilmService::getByGenre($mgr, $categorie);
-            if (isset($_GET['orderby'])){
-                $orderby = $_GET['orderby'];
-                $producten = FilmService::getByGenreAndOrdered($mgr, $categorie, $orderby);
-            }           
-        }
-        $genrelijst = FilmService::getGenresEnAantallen($mgr);
-    }
-    
-    $twigDataArray["productlijst"] = $producten; 
-    $twigDataArray["genrelijst"] = $genrelijst;
-    
-    }
-}
 
-if(isset($_SESSION["login"])){
-    $id = $_SESSION["login"];
-    $user = UserService::getUserById($mgr, $id);
-    if ($user->getAdmin()==1){
-        $_SESSION["admin"]=1;
-    }else{
-        $_SESSION["admin"]=0;
-    }
-    $twigDataArray["user"] = $user;
-}
-if (isset($_SESSION["admin"])){
-    $twigDataArray["admin"] = 1;
-}
+// Maak de pagina aan :
 
 $view = $twig->render("$page.twig", $twigDataArray);
 print ($view);
-
-print '<pre>';
-print_r($_SESSION["cartItems"]);
-print '</pre>';

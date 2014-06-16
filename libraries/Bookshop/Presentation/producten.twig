@@ -7,16 +7,20 @@
     {% include 'sidemenu.genres.template.twig' %}
     {% include 'productlist.template.twig' %}
     {% else %}
+        <div class="col-sm-6">
         <a href="index.php?id=producten&type=boeken">
         <div class="boeken">
             Boeken
         </div>
         </a>
+        </div>
+        <div class="col-sm-6">
         <a href="index.php?id=producten&type=films">
         <div class="films">
             Films
         </div>
         </a>
+        </div>
         {% endif %}
     
 {% endblock %}

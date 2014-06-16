@@ -9,6 +9,11 @@ class BoekDao{
         $lijst = $mgr->getRepository("Bookshop\\Entities\\Boek")->findAll(); //(*)
         return $lijst;
     }
+    public function getLatest($mgr){
+        $query = $mgr->createQuery('select b from Bookshop\\Entities\\Boek b order by b.id desc');
+        $lijst = $query->setMaxResults(10)->getResult();
+        return $lijst;
+    }
     public function getAllOrdered($mgr, $orderby){
         $query = $mgr->createQuery('select b from Bookshop\\Entities\\Boek b order by b.'.$orderby);
         $lijst = $query->getResult();

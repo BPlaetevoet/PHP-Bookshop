@@ -40,16 +40,17 @@
          <div id="main-content">
          <div class="container">
              <div class="site_pad">
-             U bevind zich <a href="index.php?id=home">Home</a>
+             U bevind zich hier : <a href="index.php?id=home">Home</a>
              {% if page != "home" %} <a href="index.php?id={{page}}"> / {{page|capitalize}}</a>{%endif%}
              {%if type %}<a href="index.php?id={{page}}&type={{type}}"> / {{type|capitalize}}</a>{%endif%}
              {% if soort %}<a href="index.php?id={{page}}&type={{type}}&cat={{soort.id}}"> / {{soort.omschrijving|capitalize}}</a>{%endif%}
              </div>
+         
             {% block content %}
                 
              
             {% endblock %}
-             </div> 
+             
          </div>
         <div id="footer">
              <footer>

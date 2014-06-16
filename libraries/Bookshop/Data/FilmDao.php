@@ -10,6 +10,11 @@ class FilmDAO{
         $lijst = $mgr->getRepository('Bookshop\\Entities\\Film')->findALL(); 
         return $lijst;
     }
+    public function getLatest($mgr){
+        $query = $mgr->createQuery('select f from Bookshop\\Entities\\Film f order by f.id desc');
+        $lijst = $query->setMaxResults(10)->getResult();
+        return $lijst;
+    }
     public function getAllOrdered($mgr, $orderby){
         $query = $mgr->createQuery('select f from Bookshop\\Entities\\Film f order by f.'.$orderby);
         $lijst = $query->getResult();

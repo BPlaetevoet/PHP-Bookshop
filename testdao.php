@@ -6,13 +6,13 @@ use Bookshop\Data\UserDao;
 use Bookshop\Entities\User;
 use Bookshop\Data\BoekDao;
 
-$naam = "Plaetevoet";
-$voornaam = "Jason";
-$mail = "Jason.Plaetevoet@Telenet.be";
-$adres = "Dekemelelaan 29";
+$naam = "Diaz";
+$voornaam = "Cameron";
+$mail = "Cameron.Diaz@Telenet.be";
+$adres = "Hollywood Blvd 23";
 $password = "wachtwoord";
-$postcode = 8904;
-$gemeente = "Boezinge";
+$postcode = 1000;
+$gemeente = "Brussel";
 
 
 // $plaats = PlaatsDao::voegPlaatsToe($mgr, $postcode, $gemeente);
@@ -35,5 +35,5 @@ $gemeente = "Boezinge";
 
 
 print '<pre>';
-print_r ($user);
+print_r ($newuser);
 print '</pre>';

@@ -51,6 +51,8 @@ if($page=="registreer"){
                 $adres, $postcode, $gemeente, $password);
                        
         if($registratie){
+            $login = userService::validateUser($mgr, $mail, $password);
+            $_SESSION["login"]= $login[0]->getId();
             echo json_encode(array('message'=>'Bedankt om te registreren.'));
         }else{
             header ('HTTP/1.1 500 Internal Server Error');

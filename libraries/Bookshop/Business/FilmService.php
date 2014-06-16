@@ -9,6 +9,10 @@ class FilmService{
        $lijst = FilmDao::getAll($mgr);
         return $lijst;
     }
+    public function getLatest($mgr){
+        $lijst = FilmDAO::getLatest($mgr);
+        return $lijst;
+    }
     public function getOrderedOverzicht($mgr, $orderby){
         $lijst = FilmDAO::getAllOrdered($mgr, $orderby);
         return $lijst;

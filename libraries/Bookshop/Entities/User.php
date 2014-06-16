@@ -36,7 +36,7 @@ class User {
      */
     protected $password;
     /** 
-     * @Column(type="boolean", length=1, name="isadmin")
+     * @Column(type="boolean", length=1, name="isadmin", nullable=true)
      */
     protected $isadmin;
      /** 

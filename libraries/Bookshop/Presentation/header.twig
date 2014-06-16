@@ -31,7 +31,7 @@
         
         {% else %}
             <button id="btnShowHide" class="btn btn-primary" role="button">Login</button>
-            <button id="btnShowHide2" class="btn btn-primary" role="button">Registreer</button>
+            <a href="index.php?id=registreer"><button id="registreerbutton" class="btn btn-primary" role="button">Registreer</button></a>
     {% endif %}
 </div>
 </div>
@@ -67,9 +67,9 @@
         <a href="index.php?id=viewCart"><button class="btn btn-primary">Bekijken</button></a>
     </div> 
         {% endif %}
-  <div id="showMe2" class="well headerform" style="display:none;">
+ {# <div id="showMe2" class="well headerform" style="display:none;">
                     {% include 'contactform.template.twig' %}
-                </div>
+                </div>#}
     
     </div>
 
