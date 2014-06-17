@@ -41,5 +41,12 @@ class BoekService{
         $boek = BoekDao::AddBoek($mgr, $titel, $prijs, $auteur, $genre);
         return $boek;
     }
+    public function deleteBoek($mgr, $id){
+        BoekDao::deleteBoek($mgr, $id);
+    }
+    public function UpdateBoek($mgr, $id , $titel, $prijs, $auteur, $genre){
+        $boek = BoekDao::UpdateBoek($mgr, $id, $titel, $prijs, $auteur, $genreId);
+        return $boek;
+    }
     
 }

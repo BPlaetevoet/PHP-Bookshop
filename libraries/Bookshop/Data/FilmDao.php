@@ -5,7 +5,7 @@ use Bookshop\Entities\Product;
 use Bookshop\Entities\Film;
 use Bookshop\Entities\Genre;
 
-class FilmDAO{
+class FilmDao{
     public function getAll($mgr){
         $lijst = $mgr->getRepository('Bookshop\\Entities\\Film')->findALL(); 
         return $lijst;
@@ -47,6 +47,20 @@ class FilmDAO{
         $film = new Film($titel, $prijs, $speelduur, $filmgenre);
         $mgr->persist($film);
         $mgr->flush();
+    }
+    public function deleteFilm($mgr, $id){
+        $film = $this->getById($mgr, $id);
+        $mgr->remove($film);
+        $mgr->flush();
+    }
+    public function update($mgr,$id, $titel, $prijs, $speelduur, $genreId){
+        $film = $this->getById($mgr, $id);
+        $film->setTitel($titel);
+        $film->setPrijs($prijs);
+        $film->setAuteur($speelduur);
+        $film->setGenre($genreId);
+        $mgr->flush();
+        return $film;
     }
 }
 

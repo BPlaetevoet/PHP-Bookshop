@@ -1,7 +1,6 @@
+{#home.twig#}
 {% extends 'main.twig' %}
-
     {% set active_page = page|capitalize %}
-    
 {% block content %}
      <h2>Deze site is een VDAB PHP Project Demo-site.</h2>
     <article>
@@ -12,10 +11,7 @@
     </div>
          <div class="container">
         <div class="col-sm-6 product-lijst">
-            <div class="boeken">
-                Nieuwste boeken
-            </div>
-               
+             <h1>Nieuwste boeken</h1>
             <ul> 
                 {% for boek in boekenlijst %}
                     <li class="product-lijst">{{boek.titel}} van {{boek.auteur}} <strong>{{boek.prijs}} &euro;</strong>
@@ -23,9 +19,7 @@
             </ul>
         </div>
             <div class="col-sm-6 product-lijst">
-            <div class="films">
-            Nieuwste films
-            </div>
+                <h1>Nieuwste films</h1>
                 <ul>
                 {% for film in filmlijst %}
                     <li class="product-lijst">{{film.titel}} <strong>{{film.prijs}} &euro;</strong>

@@ -1,4 +1,4 @@
-{# Header template voor bookshop #}
+{# header.twig #}
 {% block siteheader %}
     <div class="top-page">
     <div id="js_warning"><strong>Deze site vereist Javascript, gelieve javascript aan te zetten en de pagina opnieuw te laden !!</strong></div>
@@ -6,23 +6,9 @@
     {% block navigation %}
 <div class="pull-left">
     {% include 'hoofdmenu.navigatie.template.twig' %}
-{#<nav class="nav" id="hoofdmenu">
-    <ul class="nav nav-tabs">
-        {% for item in navigation_bar %}
-        <li{% if item[1] == active_page %} class="active"{% endif %}>
-            <a href="index.php?id={{item[0] }}">{{item[1]}}</a></li>
-        {% endfor %}
-    </ul>
-        
-        
-</nav>#}
 </div>
-
-
 {% endblock %}
-
 <div class="pull-right">
-    
 {% if user %}
     U bent ingelogd als {{user.voornaam}} {{user.naam}} 
     <a href="index.php?actie=uitloggen">
@@ -64,7 +50,7 @@
     <div class="cart">
         <img src="images/shopping-cart-white-md.png"/>
        {{ countItems }} item{% if countItems>1%}s{%endif%} : Totaal = {{ totaal }} &euro; &nbsp; &nbsp;
-        <a href="index.php?id=viewCart"><button class="btn btn-primary">Bekijken</button></a>
+        <a href="index.php?id=bevestigen"><button class="btn btn-primary">Bekijken</button></a>
     </div> 
         {% endif %}
  {# <div id="showMe2" class="well headerform" style="display:none;">

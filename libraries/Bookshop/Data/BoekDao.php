@@ -47,24 +47,24 @@ class BoekDao{
     }
      
     public function AddBoek($mgr, $titel, $prijs, $auteur, $genreId){
-        $genre = BoekDao::getByGenreId($mgr, $genreId);
+        $genre = GenreDao::getGenreById($mgr, $genreId);
         $boek = new Boek($titel, $prijs, $auteur, $genre);
         $mgr->persist($boek);
         $mgr->flush();
     }
-    public function delete($id){
-        $sql = "delete from mvc_boeken where id=".$id;
-        $dbc = new PDO(DBConfig::$DB_CONNSTRING, DBConfig::$DB_USERNAME, DBConfig::$DB_PASSWORD);
-        $dbc->exec($sql);
-        $dbc = null;
+    public function deleteBoek($mgr, $id){
+        $boek = $this->getById($mgr, $id);
+        $mgr->remove($boek);
+        $mgr->flush();
     }
-    public function update($boek){
-        $bestaandboek = $this->getByTitel($boek->getTitel());
-        if (isset($bestaandboek) && $bestaandboek->getId() != $boek->getId()) throw new TitelBestaatException();
-        $sql = "update mvc_boeken set titel='" .$boek->getTitel() ."', prijs=" .$boek->getPrijs() ."', genre_id=" .$boek->getGenre()->getId() ."
-            where id=".$boek->getId();
-        $dbc = new PDO(DBConfig::$DB_CONNSTRING, DBConfig::$DB_USERNAME, DBConfig::$DB_PASSWORD);
-        $dbc->exec($sql);
-        $dbc = null;
+    public function UpdateBoek($mgr, $id, $titel, $prijs, $auteur, $genreId){
+        $boek = $this->getById($mgr, $id);
+        $boek->setTitel($titel);
+        $boek->setPrijs($prijs);
+        $boek->setAuteur($auteur);
+        $genre = GenreDao::getGenreById($mgr, $genreId);
+        $boek->setGenre($genre);
+        $mgr->flush();
+        return $boek;
     }
 }

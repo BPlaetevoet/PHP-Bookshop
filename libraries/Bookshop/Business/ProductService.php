@@ -30,6 +30,9 @@ class ProductService{
         $product = ProductDao::getById($mgr, $id);
         return $product;
     }
+    public function deleteProduct($mgr, $id){
+     ProductDao::deleteProduct($mgr, $id);
+    }
 }
 
 

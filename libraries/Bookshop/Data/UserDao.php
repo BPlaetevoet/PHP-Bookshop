@@ -18,9 +18,13 @@ class UserDao {
         $user = $mgr->getRepository('Bookshop\\Entities\\User')->findBy(array('naam'=>$naam, 'voornaam'=>$voornaam));
         return $user;
     }
-    public function getByMail($mgr, $mail){
+    public function getUserByMail($mgr, $mail){
         $user = $mgr->getRepository('Bookshop\\Entities\\User')->findBy(array('mail'=>$mail));
-        return $user;
+        if($user){
+            return $user;
+        }else {
+            return null;
+        }
     }    
     public function RegisterNewUser($mgr, $naam, $voornaam, $mail, $adres, $postcode, $gemeente, $password){
         $userbestaat = $mgr->getRepository('Bookshop\\Entities\\User')->findOneByMail($mail);
@@ -29,11 +33,10 @@ class UserDao {
             $user = new User($plaats, $naam, $voornaam, $mail, $adres, $password);
             $mgr->persist($user);
             $mgr->flush();
-            return $user;
+            return $user;       
         }else {
-            return $userbestaat;
+            return null;
         }
-        
     }
     public function validateUser($mgr, $mail, $password){
         $user = $mgr->getRepository('Bookshop\\Entities\\User')->findBy(array('mail'=>$mail, 'password'=>$password));

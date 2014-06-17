@@ -5,6 +5,9 @@ require_once 'bootstrap.php';
 
 use Bookshop\Business\UserService;
 
+define('MY_EMAIL', 'bart.plaetevoet@telenet.be');
+define('EMAIL_SUBJECT', 'bookshop contact-formulier');
+
 $page = $_POST["page"];
 function errorResponse($message){
     header("HTTP/1.1 500 Internal Server Error");
@@ -46,25 +49,23 @@ if($page=="registreer"){
         $postcode = \htmlspecialchars($_POST["postcode"]);
         $gemeente = \htmlspecialchars($_POST["gemeente"]);
         $password = \base64_encode(\htmlspecialchars($_POST["password"]));
-        
         $registratie = UserService::RegisterNewUser($mgr, $naam, $voornaam, $mail, 
-                $adres, $postcode, $gemeente, $password);
-                       
+           $adres, $postcode, $gemeente, $password);
         if($registratie){
             $login = userService::validateUser($mgr, $mail, $password);
-            $_SESSION["login"]= $login[0]->getId();
+            $_SESSION["login"]= $login[0]->getId(); 
             echo json_encode(array('message'=>'Bedankt om te registreren.'));
         }else{
-            header ('HTTP/1.1 500 Internal Server Error');
-            echo json_encode(array('message'=>'Ooooops er ging iets fout.'));
+            header('HTTP/1.1 500 Internal Server Error');
+            echo json_encode(array('message'=>'Dit e-mail adres is al in gebruik '));
         }
-}elseif($page==="contact"){
-        $fiels_req = array("naam"=>true, "voornaam"=>true, "email"=>true, "boodschap"=>true);
+
+}elseif($page=="contact"){
+        $fields_req = array("naam"=>true, "voornaam"=>true, "mail"=>true, "boodschap"=>true);
         checkfields($fields_req);
         $messageBody = setMessageBody($fields_req);
-        $email = $_POST["email"];
-        if(mail('bart.Plaetevoet@telenet.be', 'Boodschap via de bookshop contact-form', 
-                $messageBody, "from: $email" )){
+        $email = $_POST["mail"];
+        if(mail(MY_EMAIL, EMAIL_SUBJECT, $messageBody, "from: $email" )){
             echo json_encode(array('message'=>'Uw boodschap werd verstuurd.'));
         }else {
             header ('HTTP/1.1 500 Internal Server Error');

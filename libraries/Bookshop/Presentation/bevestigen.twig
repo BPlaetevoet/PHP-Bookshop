@@ -1,0 +1,66 @@
+{#bevestigen.twig#}
+{% extends 'main.twig' %}
+{% block content %}
+    <section class="product-lijst col-xs-12 col-sm-8 col-sm-offset-2">
+        <h1 class="bg-info">Uw{% if bestelling %} bestelde {% else %} gekozen {% endif %} producten :</h1>
+    <div class="col-xs-2"><strong>Aantal</strong></div>
+    <div class="col-xs-6"><strong>Titel</strong></div>
+    <div class="col-xs-4"><strong>Prijs</strong></div>
+    <ul>
+        {% if bestelling %}
+            {% for item in bestelling.items %}
+                <li class="product-lijst">
+                <div class="col-xs-2">{{ item.aantal }}x</div>
+                <div class="col-xs-6">{{item.productId.titel}}</div>
+                <div class="col-xs-4">{{item.b_prijs}} &euro;</div>
+                </li>
+            {% endfor %}
+        {% else %}
+            {% for item in cartItems %}
+                <li class="product-lijst">
+                <div class="col-xs-2">{{ item[1] }}x</div>
+                <div class="col-xs-6">{{item[0].titel}}</div>
+                <div class="col-xs-4">{{item[0].prijs}} &euro;</div>
+                </li>
+            {% endfor %}
+        {% endif %}
+    </ul>
+    <p>&nbsp;</p>
+    
+    <strong>Totaal :
+        {% if bestelling %} {{bestelling.bedrag}}
+        {% elseif cartItems %}{{countItems}} items {{totaal}} 
+            {% endif %}&euro;</strong><br />
+    <h1 class="bg-info">Verzendgegevens :</h1>
+    {% if bestelling %}
+        <ul>
+        <li>{{bestelling.user_id.voornaam}} {{bestelling.user_id.naam}}
+        <li>{{bestelling.user_id.adres}}
+        <li>{{bestelling.user_id.plaats.postcode}} {{bestelling.user_id.plaats.gemeente}}
+        </ul>
+        {% elseif user %}
+           
+            {{user.voornaam}} {{user.naam}}<br />
+            {{user.adres}}<br />
+            {{user.plaats.postcode}} {{user.plaats.gemeente }}
+            <br /><br />
+            <a href="plaatsbestelling.php"<button class="btn btn-primary" role="button">Bevestigen</button></a>
+            {% else %}
+                <div id="loginform">
+                    <form role="login" method="post" action="login.php">
+                        <input type="text" style="margin:10px;" name="email" id="email" placeholder="e-mail"/>
+                        <input type="password" style="margin:10px;" name="password" id="password" placeholder="wachtwoord"/>
+                        <input type="submit" class="btn btn-primary" style="margin:10px;" name="submit" value="Inloggen">
+                    </form>
+                </div>
+                Nog geen account? registreer u dan <a href="index.php?id=registreer">hier</a>. <br />
+                <div class="fake-btn">Bevestigen</div>
+            
+            <a href="updateCart.php?reset=1"><button class="btn btn-primary" role="button">Wissen</button></a>
+    
+    {% endif %}
+    {% if bestelling %}
+        <h1 class="bg-info">Bedankt voor uw aankoop</h1>
+        {% endif %}
+    </section>
+{% endblock %}

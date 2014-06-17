@@ -4,12 +4,6 @@ $(document).ready(function() {
     var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
     return regex.test(input);
   },
-  
-// Valideer dat de postcode bestaat uit 4 cijfers.
-
-  isValidPostcode: function (postcode) {
-    
-  },
   clearErrors: function () {
     $('#emailAlert').remove();
     $('#feedbackForm .help-block').hide();
@@ -23,39 +17,36 @@ $(document).ready(function() {
   $("#feedbackSubmit, #contactSubmit").after('<div id="emailAlert" class="alert alert-' + (isError ? 'danger' : 'success') + '" style="margin-top: 5px;">' + $('<div/>').text(msg).html() + '</div>');
   }
 };
+
 $("#feedbackSubmit, #contactSubmit").click(function() {
 //    //clear fouten
     contactForm.clearErrors();
-//
-    //controleer dat de velden ingevuld zijn
+        //controleer dat de velden ingevuld zijn
     var hasErrors = false;
     $('#feedbackForm input,textarea').not('.optional').each(function(){
       if (!$(this).val()) {
         hasErrors = true;
         contactForm.addError($(this));
       }
-    });
-    
+    });  
     //controleer of bepaalde velden correct zijn ingevuld
     var $mail = $('#mail');
     if (!contactForm.isValidEmail($mail.val())) {
       hasErrors = true;
       contactForm.addError($mail);
     }
-    if ("#feedbackSubmit"){
-
-    var $terms = $('#terms');
-    if ($terms.is(':checked')){
-    }else{
-       hasErrors = true;
-       contactForm.addError($terms);
+    if(document.getElementById('terms')!=undefined){
+        var $terms = $('#terms');
+        if ($terms.is(':checked')){
+        }else{
+            hasErrors = true;
+            contactForm.addError($terms);
+            }
+        }else{   
     }
-    }
-//   
 //    //in geval van errors terugkeren zonder verzenden
     if (hasErrors) {
         return false;
-
     }
 ////    //verstuur de gegevens
     $.ajax({
@@ -66,11 +57,11 @@ $("#feedbackSubmit, #contactSubmit").click(function() {
       {
         contactForm.addAjaxMessage(data.message, false);
         // Pagina vernieuwen 
-        setTimeout("$(location.reload());",2000);
+        setTimeout("$(location.reload());",3000);
       },
       error: function(response)
       {
-        contactForm.addAjaxMessage(response.responseJson.message, true);
+        contactForm.addAjaxMessage(response.responseJSON.message, true);
       }
     });
     return false;

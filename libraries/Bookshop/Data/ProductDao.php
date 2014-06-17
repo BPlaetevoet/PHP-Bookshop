@@ -13,6 +13,11 @@ class ProductDao{
         $lijst= $query->getResult();
         return $lijst;
     }
+    public function deleteProduct($mgr, $id){
+        $product = ProductDao::getById($mgr, $id);
+        $mgr->remove($product);
+        $mgr->flush();
+    }
 }
 
 

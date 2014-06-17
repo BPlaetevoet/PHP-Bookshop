@@ -8,6 +8,7 @@ use Bookshop\Business\FilmService;
 use Bookshop\Business\ProductService;
 use Bookshop\Business\UserService;
 use Bookshop\Business\OrderService;
+use Bookshop\Exceptions\NietIngelogdException;
 
 $twigDataArray =array();
 if(isset($_SESSION["login"])){
@@ -82,13 +83,14 @@ switch ($page){
             $twigDataArray["genrelijst"] = $genrelijst;
             }
         break;
-        case "bevestiging":
+        case "bevestigen":
             if (!empty($user)){
                 $bestelling = OrderService::ToonBestellingVanUser($mgr, $user);
                 $twigDataArray["bestelling"]= $bestelling;
-            }else{
-                // Todo : Toon niet ingelogd exception
             }
+            
+            
+          
         break;
         
     }

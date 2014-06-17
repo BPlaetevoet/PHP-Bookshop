@@ -17,7 +17,7 @@ if (isset($_SESSION["login"])&&(isset($_SESSION["cartItems"]))){
     if($bestelling){
         // Bestelling gelukt doorverwijzen naar bevestigingspagina
         unset($_SESSION["cartItems"]);
-        header('location: index.php?id=bevestiging');
+        header('location: index.php?id=bevestigen');
     }else{
         // Er ging iets fout 
     }
@@ -25,20 +25,3 @@ if (isset($_SESSION["login"])&&(isset($_SESSION["cartItems"]))){
     //niet ingelogd of geen items in karretje
     
 }
-
-
-//if (isset($_SESSION["cartItems"])){
-//    $totaal = 0;
-//    $bestelling = new Order($user);
-//    foreach($_SESSION["cartItems"] as $item => $aantal){
-//        $product = ProductService::getById($mgr, $item);
-//        $item = new OrderItem($product, $aantal, $product->getPrijs(), $bestelling);
-//        $bestelling->addItem($item);
-//        $totaal +=($item->getB_Prijs()*$aantal);
-//    }
-//    $bestelling->setBedrag($totaal);
-//    $mgr->persist($bestelling);
-//    $mgr->flush();
-//}
-
-

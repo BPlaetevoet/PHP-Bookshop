@@ -17,8 +17,15 @@
             <div class="col-xs-5">{{product.titel}} ({% if type == 'boeken' %}{{ product.auteur }}{% else %}{{product.speelduur}} min.{%endif%})</div>
             <div class="col-xs-4">{{product.genre.omschrijving}}</div>
             <div class="prijstabel col-xs-2">{{product.getPrijs}}&euro;</div>
-            <div class="col-xs-1"><a href="updateCart.php?actie=toevoegen&id={{ product.id }}&returnurl={{ current_url }}">
-                    <span class="glyphicon glyphicon-shopping-cart"></span></a>
+            <div class="col-xs-1">
+                {% if user.admin == 1 %}
+                    <a href="admin.php?actie=delete&id={{product.id}}"><span class="glyphicon glyphicon-remove"></span></a>
+                {% else %}
+                <a href="updateCart.php?actie=toevoegen&id={{ product.id }}&returnurl={{ current_url }}">
+                    <span class="glyphicon glyphicon-shopping-cart"></span>
+                </a>
+                {% endif %}
+                
                 </div>
                     </li>
             {% endfor %}
@@ -30,7 +37,7 @@
                     
                 Of voeg een artikel toe :
                 <br />&nbsp;<br />
-                <form role="add" method="post" action="admin.php">
+                <form role="add" method="post" action="admin.php?actie=toevoegen">
                     <input type="hidden" name="product" id="product" value="{{type}}">
                     <input type="hidden" name="return_url" id="return_url" value="{{current_url}}">
                     <input type="text" name="titel" id="titel" placeholder="titel">

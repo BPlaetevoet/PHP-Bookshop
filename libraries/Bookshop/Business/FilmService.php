@@ -10,11 +10,11 @@ class FilmService{
         return $lijst;
     }
     public function getLatest($mgr){
-        $lijst = FilmDAO::getLatest($mgr);
+        $lijst = FilmDao::getLatest($mgr);
         return $lijst;
     }
     public function getOrderedOverzicht($mgr, $orderby){
-        $lijst = FilmDAO::getAllOrdered($mgr, $orderby);
+        $lijst = FilmDao::getAllOrdered($mgr, $orderby);
         return $lijst;
     }
     public function getByGenre($mgr, $genreId){
@@ -22,7 +22,7 @@ class FilmService{
         return $lijst;
     }
     public function getByGenreAndOrdered($mgr, $genreId, $orderby){
-        $lijst = FilmDAO::getByGenreAndOrdered($mgr, $genreId, $orderby);
+        $lijst = FilmDao::getByGenreAndOrdered($mgr, $genreId, $orderby);
         return $lijst;
     }
     public function getById($mgr,$id){
@@ -36,6 +36,9 @@ class FilmService{
     public function VoegFilmToe($mgr, $titel, $prijs, $speelduur, $genre){
         $film = FilmDao::AddFilm($mgr, $titel, $prijs, $speelduur, $genre);
         return $film;
+    }
+    public function deleteFilm($mgr, $id){
+        FilmDao::deleteFilm($mgr, $id);
     }
     public function getGenresEnAantallen($mgr){
         $lijst = FilmDao::getGenresEnAantallen($mgr);
