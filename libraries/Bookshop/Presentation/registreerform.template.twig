@@ -1,0 +1,53 @@
+{# registreerform.template.twig #}
+<form role="form" id="feedbackForm">
+                <input type="hidden" name="page" id="page" value="registreer">
+                <div class="form-group has-feedback">
+                <label class="control-label" for="voornaam">Voornaam</label>
+                <input type="text" name="voornaam" id="voornaam" class="form-control">
+                <span class="glyphicon glyphicon-asterisk form-control-feedback"></span>
+                <span class="help-block" style="display:none;">Uw voornaam ?</span>
+                </div>
+                <div class="form-group has-feedback">
+                <label class="control-label" for="naam">Familienaam</label>
+                <input type="text" name="naam" id="naam" class="form-control">
+                <span class="glyphicon glyphicon-asterisk form-control-feedback"></span>
+                <span class="help-block" style="display:none;">Uw familienaam ?</span>
+                </div>
+                <div class="form-group has-feedback">
+                <label class="control-label" for="mail">Email Adres</label>
+                <input type="text" name="mail" id="mail" class="form-control">
+                <span class="glyphicon glyphicon-asterisk form-control-feedback"></span>
+                <span class="help-block" style="display:none;">Uw e-mail adres ?</span>
+                </div>
+                <div class="form-group has-feedback">
+                <label class="control-label" for="adres">Straat + nr</label>
+                <input type="text" name="adres" id="adres" class="form-control">
+                <span class="glyphicon glyphicon-asterisk form-control-feedback"></span>
+                <span class="help-block" style="display:none;">Uw straat en huisnummer ?</span>
+                </div>
+                <div class="form-group has-feedback">
+                <label class="control-label" for="postcode">Postcode</label>
+                <input type="text" name="postcode" id="postcode" class="form-control">
+                <span class="glyphicon glyphicon-asterisk form-control-feedback"></span>
+                <span class="help-block" style="display:none;">Uw postcode ?</span>
+                </div>
+                <div class="form-group has-feedback">
+                <label class="control-label" for="gemeente">Gemeente</label>
+                <input type="text" name="gemeente" id="gemeente" class="form-control">
+                <span class="glyphicon glyphicon-asterisk form-control-feedback"></span>
+                <span class="help-block" style="display:none;">Uw gemeente ?</span>
+                </div>
+                <div class="form-group has-feedback">
+                <label class="control-label" for="password">Wachtwoord</label>
+                <input type="password" name="password" id="password" class="form-control">
+                <span class="glyphicon glyphicon-asterisk form-control-feedback"></span>
+                <span class="help-block" style="display:none;">Uw wachtwoord ?</span>
+                </div>
+                <div class="form-group has-feedback">
+                    <label class="control-label checkbox" for="terms"></label>
+                    <input type="checkbox" id="terms" name="terms"> Ik ga akkoord met de <a href="#">algemene voorwaarden</a>.
+                    <span class="help-block" style="display:none;">Gelieve akkoord te gaan met onze algemene voorwaarden.</span>
+                </div>
+                <div class="clearfix"></div>
+</form>    
+<button id="feedbackSubmit" class="btn btn-primary pull-right">Verzenden</button>

@@ -1,4 +1,5 @@
 <?php
+//FilmDao.php
 namespace Bookshop\Data;
 
 use Bookshop\Entities\Product;
@@ -49,12 +50,12 @@ class FilmDao{
         $mgr->flush();
     }
     public function deleteFilm($mgr, $id){
-        $film = $this->getById($mgr, $id);
+        $film = FilmDao::getById($mgr, $id);
         $mgr->remove($film);
         $mgr->flush();
     }
     public function update($mgr,$id, $titel, $prijs, $speelduur, $genreId){
-        $film = $this->getById($mgr, $id);
+        $film = FilmDao::getById($mgr, $id);
         $film->setTitel($titel);
         $film->setPrijs($prijs);
         $film->setAuteur($speelduur);

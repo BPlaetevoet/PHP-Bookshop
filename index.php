@@ -84,8 +84,11 @@ switch ($page){
             }
         break;
         case "bevestigen":
-            if (!empty($user)){
-                $bestelling = OrderService::ToonBestellingVanUser($mgr, $user);
+            if (isset($_GET["order"])){
+                if(is_numeric($_GET["order"])){
+                    $id= $_GET["order"];
+                }
+                $bestelling = OrderService::getById($mgr, $id);
                 $twigDataArray["bestelling"]= $bestelling;
             }
             

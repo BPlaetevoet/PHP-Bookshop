@@ -1,5 +1,5 @@
 <?php
-//ShoppingCartDao.php
+//OrderDao.php
 namespace Bookshop\Data;
 
 use Bookshop\Entities\Order;
@@ -25,8 +25,8 @@ class OrderDao{
         return $bestelling;
     }
     public function ToonBestellingVanUser($mgr, $user){
-        $bestelling = $mgr->getRepository('Bookshop\\Entities\\Order')->findOneBy(array('user_id'=>$user));
-        return $bestelling;
+        $bestellingen = $mgr->getRepository('Bookshop\\Entities\\Order')->findBy(array('user_id'=>$user));
+        return $bestellingen;
     }
 }
 

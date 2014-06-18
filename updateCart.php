@@ -1,11 +1,10 @@
 <?php
-
+//UpdateCart.php
 session_start();
 
 require_once 'bootstrap.php';
 use Bookshop\Business\ProductService;
-// use Bookshop\Business\CartItemService;
-//use Bookshop\Business\BoekService;
+
 
 if (isset($_GET["actie"])&& (isset($_GET["id"])) && (isset($_GET["returnurl"]))){
     if(!isset($_SESSION["cartItems"])){

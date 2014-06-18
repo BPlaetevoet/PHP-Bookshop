@@ -1,4 +1,5 @@
 <?php
+//ProductDao.php
 namespace Bookshop\Data;
 
 use Bookshop\Entities\Product;

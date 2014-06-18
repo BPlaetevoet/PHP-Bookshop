@@ -1,4 +1,5 @@
 <?php
+//PlaatsDao.php
 namespace Bookshop\Data;
 
 use Bookshop\Entities\Plaats;
@@ -21,7 +22,7 @@ class PlaatsDao{
         return $plaats;
     }
     public function voegPlaatsToe($mgr, $postcode, $gemeente){
-        $GemeenteBestaat = $this->getByGemeente($mgr, $gemeente);
+        $GemeenteBestaat = PlaatsDao::getByGemeente($mgr, $gemeente);
         if (!$GemeenteBestaat){
             $plaats = new Plaats($postcode, $gemeente);
             $mgr->persist($plaats);

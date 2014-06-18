@@ -28,13 +28,12 @@
         <a href="index.php"><img class="img-responsive" src="images/logo-web.png" ></a>
     </div>
     
-{#    Rechterkant header plaats voorzien voor cart-items, login en registratieformulieren#}
-                
-    
+{#    Rechterkant header plaats voorzien voor cart-items en loginformulier    #}
 
     <div class="header-info col-sm-6">
         <div id="showMe" class="well headerform" style="display:none;">
-        <form role="login" class="form-inline" method="post" action="login.php">
+            {% include 'loginform.template.twig' %}
+       {# <form role="login" class="form-inline" method="post" action="login.php">
             <div class="form-group">
                 <label class="sr-only" for="email">Email</label>
                 <input type="email" name="email" id="email" placeholder="e-mail"/>
@@ -44,7 +43,7 @@
                 <input type="password" name="password" id="password" placeholder="wachtwoord"/>
             </div>
             <button type="submit" class="btn btn-primary">Inloggen</button>
-        </form>
+        </form>#}
     </div>
        {% if cartItems %}
     <div class="cart">
@@ -53,12 +52,6 @@
         <a href="index.php?id=bevestigen"><button class="btn btn-primary">Bekijken</button></a>
     </div> 
         {% endif %}
- {# <div id="showMe2" class="well headerform" style="display:none;">
-                    {% include 'contactform.template.twig' %}
-                </div>#}
-    
     </div>
-
-
 </div>
 {% endblock siteheader %}

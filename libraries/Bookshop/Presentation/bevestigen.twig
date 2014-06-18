@@ -47,12 +47,15 @@
             <a href="plaatsbestelling.php"<button class="btn btn-primary" role="button">Bevestigen</button></a>
             {% else %}
                 <div id="loginform">
+                {% include 'loginform.template.twig' %}
+                </div>
+                {#<div id="loginform">
                     <form role="login" method="post" action="login.php">
                         <input type="text" style="margin:10px;" name="email" id="email" placeholder="e-mail"/>
                         <input type="password" style="margin:10px;" name="password" id="password" placeholder="wachtwoord"/>
                         <input type="submit" class="btn btn-primary" style="margin:10px;" name="submit" value="Inloggen">
                     </form>
-                </div>
+                </div>#}
                 Nog geen account? registreer u dan <a href="index.php?id=registreer">hier</a>. <br />
                 <div class="fake-btn">Bevestigen</div>
             

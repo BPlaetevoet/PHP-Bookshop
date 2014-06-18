@@ -1,4 +1,5 @@
 <?php
+//OrderService.php
 namespace Bookshop\Business;
 
 use Bookshop\Data\OrderDao;
@@ -13,8 +14,8 @@ class OrderService{
         return $bestelling;
     }
     public function ToonBestellingVanUser($mgr, $user){
-        $bestelling = OrderDao::ToonBestellingVanUser($mgr, $user);
-        return $bestelling;
+        $bestellingen = OrderDao::ToonBestellingVanUser($mgr, $user);
+        return $bestellingen;
     }
 }
 

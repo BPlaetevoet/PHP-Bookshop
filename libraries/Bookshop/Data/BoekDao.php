@@ -1,4 +1,5 @@
 <?php
+//BoekDao.php
 namespace Bookshop\Data;
 use Bookshop\Entities\Product;
 use Bookshop\Entities\Boek;
@@ -53,12 +54,12 @@ class BoekDao{
         $mgr->flush();
     }
     public function deleteBoek($mgr, $id){
-        $boek = $this->getById($mgr, $id);
+        $boek = BoekDao::getById($mgr, $id);
         $mgr->remove($boek);
         $mgr->flush();
     }
     public function UpdateBoek($mgr, $id, $titel, $prijs, $auteur, $genreId){
-        $boek = $this->getById($mgr, $id);
+        $boek = BoekDao::getById($mgr, $id);
         $boek->setTitel($titel);
         $boek->setPrijs($prijs);
         $boek->setAuteur($auteur);

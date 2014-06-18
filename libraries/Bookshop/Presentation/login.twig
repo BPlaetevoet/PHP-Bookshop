@@ -1,0 +1,8 @@
+{# login.twig #}
+{% extends 'main.twig' %}
+{% block content %}
+    {% if error == 1 %}
+    <p> U gaf een verkeerde combinatie op, probeer het opnieuw.</p>
+    {% endif %}
+    {% include 'loginform.template.twig' %}
+{% endblock %}

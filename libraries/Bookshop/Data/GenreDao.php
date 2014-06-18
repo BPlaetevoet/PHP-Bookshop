@@ -1,4 +1,5 @@
 <?php
+//GenreDao.php
 namespace Bookshop\Data;
 
 use Bookshop\Entities\Genre;
@@ -23,7 +24,7 @@ class GenreDao{
     } 
     
     public function addGenre($mgr, $omschrijving){
-        $bestaandGenre = $this->getGenreByOmschrijving($mgr, $omschrijving);
+        $bestaandGenre = GenreDao::getGenreByOmschrijving($mgr, $omschrijving);
             if(!$bestaandGenre){
                 $genre = new Genre($omschrijving);
                 $mgr->persist($genre);
@@ -32,7 +33,7 @@ class GenreDao{
             }
         }
     public function delete($mgr, $id){
-        $genre = $this->getGenreById($mgr, $id);
+        $genre = GenreDao::getGenreById($mgr, $id);
         $mgr->remove($genre);
         $mgr->flush();
     }
